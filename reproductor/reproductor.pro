@@ -10,13 +10,16 @@ CONFIG += c++11
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    reproductor.cpp
 
 HEADERS += \
-    mainwindow.h
+    reproductor.h
 
 FORMS += \
-    mainwindow.ui
+    reproductor.ui
+
+TRANSLATIONS += \
+    reproductor_en_US.ts
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
