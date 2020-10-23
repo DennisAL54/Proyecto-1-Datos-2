@@ -14,10 +14,10 @@ EQ            = =
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_QML_DEBUG -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -g -std=gnu++11 -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I../reproductor -I. -I../../Qt/5.15.1/gcc_64/include -I../../Qt/5.15.1/gcc_64/include/QtWidgets -I../../Qt/5.15.1/gcc_64/include/QtGui -I../../Qt/5.15.1/gcc_64/include/QtCore -I. -I/usr/include/libdrm -I. -I../../Qt/5.15.1/gcc_64/mkspecs/linux-g++
+INCPATH       = -I../reproductor -I. -I../../Qt/5.15.1/gcc_64/include -I../../Qt/5.15.1/gcc_64/include/QtMultimedia -I../../Qt/5.15.1/gcc_64/include/QtWidgets -I../../Qt/5.15.1/gcc_64/include/QtGui -I../../Qt/5.15.1/gcc_64/include/QtNetwork -I../../Qt/5.15.1/gcc_64/include/QtCore -I. -I/usr/include/libdrm -I. -I../../Qt/5.15.1/gcc_64/mkspecs/linux-g++
 QMAKE         = /home/roy/Qt/5.15.1/gcc_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -40,7 +40,7 @@ DISTNAME      = reproductor1.0.0
 DISTDIR = /home/roy/Proyecto-1-Datos-2/build-reproductor-Desktop-Debug/.tmp/reproductor1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-rpath,/home/roy/Qt/5.15.1/gcc_64/lib
-LIBS          = $(SUBLIBS) /home/roy/Qt/5.15.1/gcc_64/lib/libQt5Widgets.so /home/roy/Qt/5.15.1/gcc_64/lib/libQt5Gui.so /home/roy/Qt/5.15.1/gcc_64/lib/libQt5Core.so -lGL -lpthread   
+LIBS          = $(SUBLIBS) /home/roy/Qt/5.15.1/gcc_64/lib/libQt5Multimedia.so /home/roy/Qt/5.15.1/gcc_64/lib/libQt5Widgets.so /home/roy/Qt/5.15.1/gcc_64/lib/libQt5Gui.so /home/roy/Qt/5.15.1/gcc_64/lib/libQt5Network.so /home/roy/Qt/5.15.1/gcc_64/lib/libQt5Core.so -lGL -lpthread   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -213,6 +213,7 @@ DIST          = ../../Qt/5.15.1/gcc_64/mkspecs/features/spec_pre.prf \
 		../../Qt/5.15.1/gcc_64/mkspecs/features/qt_config.prf \
 		../../Qt/5.15.1/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../Qt/5.15.1/gcc_64/mkspecs/features/spec_post.prf \
+		../reproductor/.qmake.stash \
 		../../Qt/5.15.1/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../Qt/5.15.1/gcc_64/mkspecs/features/toolchain.prf \
 		../../Qt/5.15.1/gcc_64/mkspecs/features/default_pre.prf \
@@ -402,6 +403,7 @@ Makefile: ../reproductor/reproductor.pro ../../Qt/5.15.1/gcc_64/mkspecs/linux-g+
 		../../Qt/5.15.1/gcc_64/mkspecs/features/qt_config.prf \
 		../../Qt/5.15.1/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../Qt/5.15.1/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../Qt/5.15.1/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../Qt/5.15.1/gcc_64/mkspecs/features/toolchain.prf \
 		../../Qt/5.15.1/gcc_64/mkspecs/features/default_pre.prf \
@@ -580,6 +582,7 @@ Makefile: ../reproductor/reproductor.pro ../../Qt/5.15.1/gcc_64/mkspecs/linux-g+
 ../../Qt/5.15.1/gcc_64/mkspecs/features/qt_config.prf:
 ../../Qt/5.15.1/gcc_64/mkspecs/linux-g++/qmake.conf:
 ../../Qt/5.15.1/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../Qt/5.15.1/gcc_64/mkspecs/features/exclusive_builds.prf:
 ../../Qt/5.15.1/gcc_64/mkspecs/features/toolchain.prf:
 ../../Qt/5.15.1/gcc_64/mkspecs/features/default_pre.prf:
@@ -761,9 +764,29 @@ moc_reproductor.cpp: ../reproductor/reproductor.h \
 		../../Qt/5.15.1/gcc_64/include/QtGui/qtouchdevice.h \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../Qt/5.15.1/gcc_64/include/QtGui/qicon.h \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/QMediaPlayer \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaplayer.h \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qtmultimediaglobal.h \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qtmultimedia-config.h \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaobject.h \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmultimedia.h \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediacontent.h \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaresource.h \
+		../../Qt/5.15.1/gcc_64/include/QtNetwork/qnetworkrequest.h \
+		../../Qt/5.15.1/gcc_64/include/QtNetwork/qtnetworkglobal.h \
+		../../Qt/5.15.1/gcc_64/include/QtNetwork/qtnetwork-config.h \
+		../../Qt/5.15.1/gcc_64/include/QtCore/QSharedDataPointer \
+		../../Qt/5.15.1/gcc_64/include/QtCore/QString \
+		../../Qt/5.15.1/gcc_64/include/QtCore/QUrl \
+		../../Qt/5.15.1/gcc_64/include/QtCore/QVariant \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaenumdebug.h \
+		../../Qt/5.15.1/gcc_64/include/QtCore/qmetaobject.h \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qaudio.h \
+		../../Qt/5.15.1/gcc_64/include/QtNetwork/qnetworkconfiguration.h \
+		../../Qt/5.15.1/gcc_64/include/QtCore/QDebug \
 		moc_predefs.h \
 		../../Qt/5.15.1/gcc_64/bin/moc
-	/home/roy/Qt/5.15.1/gcc_64/bin/moc $(DEFINES) --include /home/roy/Proyecto-1-Datos-2/build-reproductor-Desktop-Debug/moc_predefs.h -I/home/roy/Qt/5.15.1/gcc_64/mkspecs/linux-g++ -I/home/roy/Proyecto-1-Datos-2/reproductor -I/home/roy/Qt/5.15.1/gcc_64/include -I/home/roy/Qt/5.15.1/gcc_64/include/QtWidgets -I/home/roy/Qt/5.15.1/gcc_64/include/QtGui -I/home/roy/Qt/5.15.1/gcc_64/include/QtCore -I. -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../reproductor/reproductor.h -o moc_reproductor.cpp
+	/home/roy/Qt/5.15.1/gcc_64/bin/moc $(DEFINES) --include /home/roy/Proyecto-1-Datos-2/build-reproductor-Desktop-Debug/moc_predefs.h -I/home/roy/Qt/5.15.1/gcc_64/mkspecs/linux-g++ -I/home/roy/Proyecto-1-Datos-2/reproductor -I/home/roy/Qt/5.15.1/gcc_64/include -I/home/roy/Qt/5.15.1/gcc_64/include/QtMultimedia -I/home/roy/Qt/5.15.1/gcc_64/include/QtWidgets -I/home/roy/Qt/5.15.1/gcc_64/include/QtGui -I/home/roy/Qt/5.15.1/gcc_64/include/QtNetwork -I/home/roy/Qt/5.15.1/gcc_64/include/QtCore -I. -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../reproductor/reproductor.h -o moc_reproductor.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -893,6 +916,26 @@ main.o: ../reproductor/main.cpp ../reproductor/reproductor.h \
 		../../Qt/5.15.1/gcc_64/include/QtGui/qtouchdevice.h \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../Qt/5.15.1/gcc_64/include/QtGui/qicon.h \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/QMediaPlayer \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaplayer.h \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qtmultimediaglobal.h \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qtmultimedia-config.h \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaobject.h \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmultimedia.h \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediacontent.h \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaresource.h \
+		../../Qt/5.15.1/gcc_64/include/QtNetwork/qnetworkrequest.h \
+		../../Qt/5.15.1/gcc_64/include/QtNetwork/qtnetworkglobal.h \
+		../../Qt/5.15.1/gcc_64/include/QtNetwork/qtnetwork-config.h \
+		../../Qt/5.15.1/gcc_64/include/QtCore/QSharedDataPointer \
+		../../Qt/5.15.1/gcc_64/include/QtCore/QString \
+		../../Qt/5.15.1/gcc_64/include/QtCore/QUrl \
+		../../Qt/5.15.1/gcc_64/include/QtCore/QVariant \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaenumdebug.h \
+		../../Qt/5.15.1/gcc_64/include/QtCore/qmetaobject.h \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qaudio.h \
+		../../Qt/5.15.1/gcc_64/include/QtNetwork/qnetworkconfiguration.h \
+		../../Qt/5.15.1/gcc_64/include/QtCore/QDebug \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/QApplication \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/qapplication.h \
 		../../Qt/5.15.1/gcc_64/include/QtCore/qcoreapplication.h \
@@ -1009,7 +1052,77 @@ reproductor.o: ../reproductor/reproductor.cpp ../reproductor/reproductor.h \
 		../../Qt/5.15.1/gcc_64/include/QtGui/qtouchdevice.h \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../Qt/5.15.1/gcc_64/include/QtGui/qicon.h \
-		ui_reproductor.h
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/QMediaPlayer \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaplayer.h \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qtmultimediaglobal.h \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qtmultimedia-config.h \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaobject.h \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmultimedia.h \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediacontent.h \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaresource.h \
+		../../Qt/5.15.1/gcc_64/include/QtNetwork/qnetworkrequest.h \
+		../../Qt/5.15.1/gcc_64/include/QtNetwork/qtnetworkglobal.h \
+		../../Qt/5.15.1/gcc_64/include/QtNetwork/qtnetwork-config.h \
+		../../Qt/5.15.1/gcc_64/include/QtCore/QSharedDataPointer \
+		../../Qt/5.15.1/gcc_64/include/QtCore/QString \
+		../../Qt/5.15.1/gcc_64/include/QtCore/QUrl \
+		../../Qt/5.15.1/gcc_64/include/QtCore/QVariant \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaenumdebug.h \
+		../../Qt/5.15.1/gcc_64/include/QtCore/qmetaobject.h \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qaudio.h \
+		../../Qt/5.15.1/gcc_64/include/QtNetwork/qnetworkconfiguration.h \
+		../../Qt/5.15.1/gcc_64/include/QtCore/QDebug \
+		ui_reproductor.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/QApplication \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qapplication.h \
+		../../Qt/5.15.1/gcc_64/include/QtCore/qcoreapplication.h \
+		../../Qt/5.15.1/gcc_64/include/QtCore/qeventloop.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../Qt/5.15.1/gcc_64/include/QtGui/qguiapplication.h \
+		../../Qt/5.15.1/gcc_64/include/QtGui/qinputmethod.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/QCheckBox \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qcheckbox.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qlayout.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/QLabel \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qlabel.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qframe.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/QListWidget \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qlistwidget.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qlistview.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../Qt/5.15.1/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../Qt/5.15.1/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../Qt/5.15.1/gcc_64/include/QtGui/qvalidator.h \
+		../../Qt/5.15.1/gcc_64/include/QtCore/qregularexpression.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qslider.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qstyle.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qtabbar.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qrubberband.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/QMenuBar \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qmenubar.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qmenu.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qaction.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/QProgressBar \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qprogressbar.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/QPushButton \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/QSlider \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/QSpacerItem \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/QStatusBar \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qstatusbar.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/QVBoxLayout \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o reproductor.o ../reproductor/reproductor.cpp
 
 moc_reproductor.o: moc_reproductor.cpp 

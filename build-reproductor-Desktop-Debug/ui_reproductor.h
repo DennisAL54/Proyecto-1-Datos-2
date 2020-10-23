@@ -37,7 +37,7 @@ public:
     QSpacerItem *verticalSpacer;
     QPushButton *pushButton;
     QListWidget *listWidget;
-    QSlider *horizontalSlider;
+    QSlider *progess;
     QLabel *label_2;
     QPushButton *pushButton_2;
     QWidget *horizontalLayoutWidget;
@@ -45,6 +45,7 @@ public:
     QLabel *label_3;
     QProgressBar *progressBar;
     QCheckBox *checkBox;
+    QPushButton *pushButton_3;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -78,16 +79,16 @@ public:
         listWidget = new QListWidget(centralwidget);
         listWidget->setObjectName(QString::fromUtf8("listWidget"));
         listWidget->setGeometry(QRect(185, 11, 601, 431));
-        horizontalSlider = new QSlider(centralwidget);
-        horizontalSlider->setObjectName(QString::fromUtf8("horizontalSlider"));
-        horizontalSlider->setGeometry(QRect(190, 450, 591, 20));
-        horizontalSlider->setOrientation(Qt::Horizontal);
+        progess = new QSlider(centralwidget);
+        progess->setObjectName(QString::fromUtf8("progess"));
+        progess->setGeometry(QRect(190, 450, 591, 20));
+        progess->setOrientation(Qt::Horizontal);
         label_2 = new QLabel(centralwidget);
         label_2->setObjectName(QString::fromUtf8("label_2"));
         label_2->setGeometry(QRect(190, 480, 51, 31));
         pushButton_2 = new QPushButton(centralwidget);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(420, 470, 111, 41));
+        pushButton_2->setGeometry(QRect(370, 480, 91, 31));
         horizontalLayoutWidget = new QWidget(centralwidget);
         horizontalLayoutWidget->setObjectName(QString::fromUtf8("horizontalLayoutWidget"));
         horizontalLayoutWidget->setGeometry(QRect(510, 530, 291, 26));
@@ -110,6 +111,9 @@ public:
 
         horizontalLayout->addWidget(checkBox);
 
+        pushButton_3 = new QPushButton(centralwidget);
+        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
+        pushButton_3->setGeometry(QRect(480, 480, 81, 31));
         Reproductor->setCentralWidget(centralwidget);
         menubar = new QMenuBar(Reproductor);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -130,9 +134,10 @@ public:
         label->setText(QCoreApplication::translate("Reproductor", "Library", nullptr));
         pushButton->setText(QCoreApplication::translate("Reproductor", "Load LIbrary", nullptr));
         label_2->setText(QCoreApplication::translate("Reproductor", "Playing:", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("Reproductor", "Play / Pause", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("Reproductor", "Play", nullptr));
         label_3->setText(QCoreApplication::translate("Reproductor", "Memory Usage", nullptr));
         checkBox->setText(QCoreApplication::translate("Reproductor", "Paginate", nullptr));
+        pushButton_3->setText(QCoreApplication::translate("Reproductor", "Pause", nullptr));
     } // retranslateUi
 
 };
