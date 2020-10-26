@@ -1,5 +1,7 @@
 #include "reproductor.h"
 #include "ui_reproductor.h"
+#include <QMediaPlayer>
+#include <QFileDialog>
 
 Reproductor::Reproductor(QWidget *parent)
     : QMainWindow(parent)
@@ -9,8 +11,8 @@ Reproductor::Reproductor(QWidget *parent)
 
     reproductor = new QMediaPlayer(this);
 
-    //connect(reproductor,&QMediaPlayer::position,this, &Reproductor::on_position);
-    //connect(reproductor,&QMediaPlayer::duration,this, &Reproductor::on_duration);
+    connect(reproductor,&QMediaPlayer::positionChanged,this, &Reproductor::on_position);
+    connect(reproductor,&QMediaPlayer::durationChanged,this, &Reproductor::on_duration);
 }
 
 Reproductor::~Reproductor()
@@ -26,14 +28,14 @@ void Reproductor::on_progess_sliderMoved(int position)
 
 void Reproductor::on_pushButton_2_clicked()
 {
-    reproductor->setMedia(QUrl::fromLocalFile("home/rootshell/test.mp3"));
+
     reproductor->play();
-    qDebug() << reproductor->errorString();
+
 }
 
 void Reproductor::on_pushButton_3_clicked()
 {
-    reproductor->stop();
+    reproductor->pause();
 }
 
 void Reproductor::on_position(qint64 position)
@@ -44,4 +46,15 @@ void Reproductor::on_position(qint64 position)
 void Reproductor::on_duration(qint64 position)
 {
     ui->progess->setMaximum(position);
+}
+
+void Reproductor::on_pushButton_clicked()
+{
+    QString song = QFileDialog::getOpenFileName(this,"Open");
+    if(song.isEmpty()){
+        return;
+    }
+    reproductor->setMedia(QUrl::fromLocalFile(song));
+    reproductor->setVolume(100);
+    on_pushButton_2_clicked();
 }

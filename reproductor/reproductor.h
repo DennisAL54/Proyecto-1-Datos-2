@@ -18,7 +18,10 @@ public:
     ~Reproductor();
 
 private slots:
+
     void on_progess_sliderMoved(int position);
+
+    void on_pushButton_clicked();
 
     void on_pushButton_2_clicked();
 
