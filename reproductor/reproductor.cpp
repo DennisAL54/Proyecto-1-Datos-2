@@ -2,6 +2,13 @@
 #include "ui_reproductor.h"
 #include <QMediaPlayer>
 #include <QFileDialog>
+#include <QMediaMetaData>
+#include <QString>
+#include <qmediaservice.h>
+#include <qmediaplaylist.h>
+#include <qvideoprobe.h>
+
+
 
 Reproductor::Reproductor(QWidget *parent)
     : QMainWindow(parent)
@@ -13,6 +20,7 @@ Reproductor::Reproductor(QWidget *parent)
 
     connect(reproductor,&QMediaPlayer::positionChanged,this, &Reproductor::on_position);
     connect(reproductor,&QMediaPlayer::durationChanged,this, &Reproductor::on_duration);
+
 }
 
 Reproductor::~Reproductor()
@@ -54,7 +62,13 @@ void Reproductor::on_pushButton_clicked()
     if(song.isEmpty()){
         return;
     }
+    //QMediaMetaData::AlbumArtist
+
+    ui->artistName->setText("Queen");
     reproductor->setMedia(QUrl::fromLocalFile(song));
+
     reproductor->setVolume(100);
-    on_pushButton_2_clicked();
+    reproductor->play();
+    reproductor->metaData(QMediaMetaData::Title).toString();
+    ui->songName->setText(QMediaMetaData::Title);
 }
