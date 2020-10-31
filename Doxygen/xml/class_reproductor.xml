@@ -1,0 +1,247 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="class_reproductor" kind="class" language="C++" prot="public">
+    <compoundname>Reproductor</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QMainWindow</basecompoundref>
+    <includes refid="reproductor_8h" local="no">reproductor.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_reproductor_1ac08c0e561f6aec817fa5fdb26b0ec9db" prot="private" static="no" mutable="no">
+        <type>Ui::Reproductor *</type>
+        <definition>Ui::Reproductor* Reproductor::ui</definition>
+        <argsstring></argsstring>
+        <name>ui</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="reproductor/reproductor.h" line="66" column="21" bodyfile="reproductor/reproductor.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_reproductor_1aa2e32cba0cfec651a2de1389eabdf26c" prot="private" static="no" mutable="no">
+        <type>QMediaPlayer *</type>
+        <definition>QMediaPlayer* Reproductor::reproductor</definition>
+        <argsstring></argsstring>
+        <name>reproductor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="reproductor/reproductor.h" line="67" column="18" bodyfile="reproductor/reproductor.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_reproductor_1aa6a7a43d385dd4ed20afd489ff1c00e9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Reproductor::Reproductor</definition>
+        <argsstring>(QWidget *parent=nullptr)</argsstring>
+        <name>Reproductor</name>
+        <param>
+          <type>QWidget *</type>
+          <declname>parent</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="reproductor/reproductor.h" line="25" column="5" bodyfile="reproductor/reproductor.cpp" bodystart="14" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="class_reproductor_1a7bda957e345597bd49d0a3c5ffda435a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Reproductor::~Reproductor</definition>
+        <argsstring>()</argsstring>
+        <name>~Reproductor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="reproductor/reproductor.h" line="26" column="5" bodyfile="reproductor/reproductor.cpp" bodystart="27" bodyend="30"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-slot">
+      <memberdef kind="slot" id="class_reproductor_1a1bcd8fc893fed972fed02620f6c70e6a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Reproductor::on_progess_sliderMoved</definition>
+        <argsstring>(int position)</argsstring>
+        <name>on_progess_sliderMoved</name>
+        <param>
+          <type>int</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+<para>on_progess_sliderMoved Define la posicion de la cancion mediante una barra de progreso </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>La</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>barra equivale a enteros entre 0 y 100 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Reproduce la cancion en la posicion determiada </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="reproductor/reproductor.h" line="35" column="10" bodyfile="reproductor/reproductor.cpp" bodystart="33" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="slot" id="class_reproductor_1a9af5233c28e2c32b3b15adbdadd5bbfb" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Reproductor::on_pushButton_clicked</definition>
+        <argsstring>()</argsstring>
+        <name>on_pushButton_clicked</name>
+        <briefdescription>
+<para>on_pushButton_clicked Abre un buscador de archivos que inserta la cancion que se va a reporducir </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>Una</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>direccion donde se encuentra la musica que se desea reproducir </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>La direccion agregada para que el reproductor reproduzca la cancion </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="reproductor/reproductor.h" line="42" column="10" bodyfile="reproductor/reproductor.cpp" bodystart="60" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="slot" id="class_reproductor_1a967440c8d5cd97b82e83a42999d22e53" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Reproductor::on_pushButton_2_clicked</definition>
+        <argsstring>()</argsstring>
+        <name>on_pushButton_2_clicked</name>
+        <briefdescription>
+<para>on_pushButton_2_clicked Boton que reproduce la musica si esta pausada </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Inicia la musica </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="reproductor/reproductor.h" line="48" column="10" bodyfile="reproductor/reproductor.cpp" bodystart="38" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="slot" id="class_reproductor_1a5346825c6c20d862584fd02a20f2c64a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Reproductor::on_pushButton_3_clicked</definition>
+        <argsstring>()</argsstring>
+        <name>on_pushButton_3_clicked</name>
+        <briefdescription>
+<para>on_pushButton_3_clicked Boton que pausa la musica si se esta reproduciendo </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Detiene la musica pero la deja en la posicion en la que se encuentra </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="reproductor/reproductor.h" line="54" column="10" bodyfile="reproductor/reproductor.cpp" bodystart="45" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="slot" id="class_reproductor_1a64c5803c68b2c7fea7287e5ea9dc8bf2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Reproductor::on_position</definition>
+        <argsstring>(qint64 position)</argsstring>
+        <name>on_position</name>
+        <param>
+          <type>qint64</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+<para>on_position Funcion complementaria para poder determinar la posicion de la cancion </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>Posicion</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>del la barra de progreso </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Posicion relativa a la cancion </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="reproductor/reproductor.h" line="61" column="10" bodyfile="reproductor/reproductor.cpp" bodystart="50" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="slot" id="class_reproductor_1a7233e5ce5e681eddd73a2820db10a8f0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Reproductor::on_duration</definition>
+        <argsstring>(qint64 position)</argsstring>
+        <name>on_duration</name>
+        <param>
+          <type>qint64</type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="reproductor/reproductor.h" line="63" column="10" bodyfile="reproductor/reproductor.cpp" bodystart="55" bodyend="58"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>QMainWindow</label>
+      </node>
+      <node id="1">
+        <label>Reproductor</label>
+        <link refid="class_reproductor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>QMainWindow</label>
+      </node>
+      <node id="1">
+        <label>Reproductor</label>
+        <link refid="class_reproductor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="reproductor/reproductor.h" line="20" column="1" bodyfile="reproductor/reproductor.h" bodystart="21" bodyend="69"/>
+    <listofallmembers>
+      <member refid="class_reproductor_1a7233e5ce5e681eddd73a2820db10a8f0" prot="private" virt="non-virtual"><scope>Reproductor</scope><name>on_duration</name></member>
+      <member refid="class_reproductor_1a64c5803c68b2c7fea7287e5ea9dc8bf2" prot="private" virt="non-virtual"><scope>Reproductor</scope><name>on_position</name></member>
+      <member refid="class_reproductor_1a1bcd8fc893fed972fed02620f6c70e6a" prot="private" virt="non-virtual"><scope>Reproductor</scope><name>on_progess_sliderMoved</name></member>
+      <member refid="class_reproductor_1a967440c8d5cd97b82e83a42999d22e53" prot="private" virt="non-virtual"><scope>Reproductor</scope><name>on_pushButton_2_clicked</name></member>
+      <member refid="class_reproductor_1a5346825c6c20d862584fd02a20f2c64a" prot="private" virt="non-virtual"><scope>Reproductor</scope><name>on_pushButton_3_clicked</name></member>
+      <member refid="class_reproductor_1a9af5233c28e2c32b3b15adbdadd5bbfb" prot="private" virt="non-virtual"><scope>Reproductor</scope><name>on_pushButton_clicked</name></member>
+      <member refid="class_reproductor_1aa2e32cba0cfec651a2de1389eabdf26c" prot="private" virt="non-virtual"><scope>Reproductor</scope><name>reproductor</name></member>
+      <member refid="class_reproductor_1aa6a7a43d385dd4ed20afd489ff1c00e9" prot="public" virt="non-virtual"><scope>Reproductor</scope><name>Reproductor</name></member>
+      <member refid="class_reproductor_1ac08c0e561f6aec817fa5fdb26b0ec9db" prot="private" virt="non-virtual"><scope>Reproductor</scope><name>ui</name></member>
+      <member refid="class_reproductor_1a7bda957e345597bd49d0a3c5ffda435a" prot="public" virt="non-virtual"><scope>Reproductor</scope><name>~Reproductor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

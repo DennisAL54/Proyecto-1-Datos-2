@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.20" xml:lang="en-US">
+  <compound refid="class_reproductor" kind="class"><name>Reproductor</name>
+    <member refid="class_reproductor_1ac08c0e561f6aec817fa5fdb26b0ec9db" kind="variable"><name>ui</name></member>
+    <member refid="class_reproductor_1aa2e32cba0cfec651a2de1389eabdf26c" kind="variable"><name>reproductor</name></member>
+    <member refid="class_reproductor_1aa6a7a43d385dd4ed20afd489ff1c00e9" kind="function"><name>Reproductor</name></member>
+    <member refid="class_reproductor_1a7bda957e345597bd49d0a3c5ffda435a" kind="function"><name>~Reproductor</name></member>
+    <member refid="class_reproductor_1a1bcd8fc893fed972fed02620f6c70e6a" kind="slot"><name>on_progess_sliderMoved</name></member>
+    <member refid="class_reproductor_1a9af5233c28e2c32b3b15adbdadd5bbfb" kind="slot"><name>on_pushButton_clicked</name></member>
+    <member refid="class_reproductor_1a967440c8d5cd97b82e83a42999d22e53" kind="slot"><name>on_pushButton_2_clicked</name></member>
+    <member refid="class_reproductor_1a5346825c6c20d862584fd02a20f2c64a" kind="slot"><name>on_pushButton_3_clicked</name></member>
+    <member refid="class_reproductor_1a64c5803c68b2c7fea7287e5ea9dc8bf2" kind="slot"><name>on_position</name></member>
+    <member refid="class_reproductor_1a7233e5ce5e681eddd73a2820db10a8f0" kind="slot"><name>on_duration</name></member>
+  </compound>
+  <compound refid="namespace_ui" kind="namespace"><name>Ui</name>
+  </compound>
+  <compound refid="main_8cpp" kind="file"><name>main.cpp</name>
+    <member refid="main_8cpp_1a0ddf1224851353fc92bfbff6f499fa97" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="reproductor_8cpp" kind="file"><name>reproductor.cpp</name>
+  </compound>
+  <compound refid="reproductor_8h" kind="file"><name>reproductor.h</name>
+  </compound>
+  <compound refid="dir_64cb7fe99658de0df88392719588ce2e" kind="dir"><name>reproductor</name>
+  </compound>
+</doxygenindex>
