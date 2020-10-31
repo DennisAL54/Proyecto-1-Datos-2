@@ -7,6 +7,7 @@
 #include <qmediaservice.h>
 #include <qmediaplaylist.h>
 #include <qvideoprobe.h>
+#include <QDebug>
 
 
 
@@ -64,11 +65,17 @@ void Reproductor::on_pushButton_clicked()
     }
     //QMediaMetaData::AlbumArtist
 
-    ui->artistName->setText("Queen");
+    //ui->artistName->setText("Queen");
     reproductor->setMedia(QUrl::fromLocalFile(song));
-
     reproductor->setVolume(100);
+    if(reproductor->isMetaDataAvailable()){
+        QString title = reproductor->metaData(QMediaMetaData::Title).toString();
+        ui->songName->setText(title);
+    }
+    else{
+        qDebug()<<"No metadata";
+    }
     reproductor->play();
-    reproductor->metaData(QMediaMetaData::Title).toString();
-    ui->songName->setText(QMediaMetaData::Title);
+    //reproductor->metaData(QMediaMetaData::Title).toString();
+    //ui->songName->setText(QMediaMetaData::Title);
 }
