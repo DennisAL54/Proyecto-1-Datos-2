@@ -4,10 +4,8 @@
 #include <QFileDialog>
 #include <QMediaMetaData>
 #include <QString>
-#include <qmediaservice.h>
-#include <qmediaplaylist.h>
-#include <qvideoprobe.h>
 #include <QDebug>
+
 
 
 
@@ -18,6 +16,9 @@ Reproductor::Reproductor(QWidget *parent)
     ui->setupUi(this);
 
     reproductor = new QMediaPlayer(this);
+    playlist = new QMediaPlaylist;
+    reproductor->setVolume(100);
+    reproductor->setPlaylist(playlist);
 
     connect(reproductor,&QMediaPlayer::positionChanged,this, &Reproductor::on_position);
     connect(reproductor,&QMediaPlayer::durationChanged,this, &Reproductor::on_duration);
@@ -59,23 +60,26 @@ void Reproductor::on_duration(qint64 position)
 
 void Reproductor::on_pushButton_clicked()
 {
-    QString song = QFileDialog::getOpenFileName(this,"Open");
-    if(song.isEmpty()){
-        return;
-    }
-    //QMediaMetaData::AlbumArtist
 
-    //ui->artistName->setText("Queen");
-    reproductor->setMedia(QUrl::fromLocalFile(song));
-    reproductor->setVolume(100);
-    if(reproductor->isMetaDataAvailable()){
-        QString title = reproductor->metaData(QMediaMetaData::Title).toString();
-        ui->songName->setText(title);
+    QStringList filenames = QFileDialog::getOpenFileNames(this, "Open a File");
+    for(const QString & filename: filenames){
+        playlist->addMedia(QMediaContent(QUrl::fromLocalFile(filename)));
+         ui->listWidget->addItem(filename);
     }
-    else{
-        qDebug()<<"No metadata";
-    }
+
+//    QString song = QFileDialog::getOpenFileName(this,"Open");
+//    if(song.isEmpty()){
+//        return;
+//    }
+//    reproductor->setMedia(QUrl::fromLocalFile(song));
+//    reproductor->play();
+}
+
+void Reproductor::on_listWidget_activated()
+{
+    //ui->songBar->setRange(0, player->duration() / 1000);
+    playlist->setCurrentIndex(ui->listWidget->currentRow());
+    ui->pushButton->setIcon(QIcon(":/new/prefix1/Resource/media_playback_pause.png"));
+    //playPauseCounter =2;
     reproductor->play();
-    //reproductor->metaData(QMediaMetaData::Title).toString();
-    //ui->songName->setText(QMediaMetaData::Title);
 }

@@ -12,6 +12,8 @@
 #include <QMainWindow>
 #include <QMediaPlayer>
 #include <QDebug>
+#include <QMediaPlaylist>
+#include <QListWidgetItem>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Reproductor; }
@@ -62,9 +64,12 @@ private slots:
 
     void on_duration(qint64 position);
 
+    void on_listWidget_activated();
+
 private:
     Ui::Reproductor *ui;
     QMediaPlayer* reproductor;
+    QMediaPlaylist *playlist;
 
 };
 #endif // REPRODUCTOR_H
