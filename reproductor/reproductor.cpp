@@ -77,9 +77,6 @@ void Reproductor::on_pushButton_clicked()
 
 void Reproductor::on_listWidget_activated()
 {
-    //ui->songBar->setRange(0, player->duration() / 1000);
     playlist->setCurrentIndex(ui->listWidget->currentRow());
-    ui->pushButton->setIcon(QIcon(":/new/prefix1/Resource/media_playback_pause.png"));
-    //playPauseCounter =2;
     reproductor->play();
 }
