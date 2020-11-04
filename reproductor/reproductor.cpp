@@ -68,19 +68,15 @@ void Reproductor::on_duration(qint64 position)
 
 void Reproductor::on_pushButton_clicked()
 {
-
+    //Crea nueva variable relacionada al buscador de archivos
     QStringList filenames = QFileDialog::getOpenFileNames(this, "Open a File");
+    //Por cada archivo seleccionado lo agrega a la playlist y agrega el nombre al listWidget
     for(const QString & filename: filenames){
+        //Agrega cancion a la playlist
         playlist->addMedia(QMediaContent(QUrl::fromLocalFile(filename)));
+        //Agrega el nombre al listWidget
          ui->listWidget->addItem(filename);
     }
-
-//    QString song = QFileDialog::getOpenFileName(this,"Open");
-//    if(song.isEmpty()){
-//        return;
-//    }
-//    reproductor->setMedia(QUrl::fromLocalFile(song));
-//    reproductor->play();
 }
 
 void Reproductor::on_listWidget_activated()
