@@ -13,14 +13,22 @@ Reproductor::Reproductor(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::Reproductor)
 {
+    //Define la interfaz a esta clase
     ui->setupUi(this);
 
+
+    //Define la variable del reproductor
     reproductor = new QMediaPlayer(this);
+    //Define la variable para la playlist
     playlist = new QMediaPlaylist;
+    //Define el volumen del reproductor
     reproductor->setVolume(100);
+    //Enlaza la playlist al reproductor
     reproductor->setPlaylist(playlist);
 
+    //Conecta la posicion de las barra de progreso con la del volumen
     connect(reproductor,&QMediaPlayer::positionChanged,this, &Reproductor::on_position);
+    //Conecta la posicion de las barra de progreso con la de la posicion de la de la cancion
     connect(reproductor,&QMediaPlayer::durationChanged,this, &Reproductor::on_duration);
 
 }
