@@ -5,9 +5,170 @@
 #include <QMediaMetaData>
 #include <QString>
 #include <QDebug>
+#include <iostream>
+#include <bits/stdc++.h>
+#include <fstream>
+#include <string>
+
+using namespace std;
 
 
+class Node
+{
+    public:
+    string info2;
+    Node *data;
+    Node *next;
+};
 
+/**
+ * Funcion para insertar un elemento al inico de la lista (util para el scroll back)
+ */
+void insertBeg(Node** head, Node** info)
+{
+    Node* nodo = new Node(); //Crea un nodo
+    nodo->data = *info; //Le asigna su data
+    nodo->next = *head; //Mueve la anterior cabeza al elemento siguiente
+    *head = nodo;// Hace que el head apunte al nuevo nodo
+}
+/**
+ * Funcion para insertar un elemento al final de la lista (Util para el scroll foward)
+*/
+void insertEnd(Node** head, Node** info)
+{
+
+    Node* nodo = new Node(); //Crea un nodo
+
+    Node *last = *head; //Crea un nodo "cola" o "final"
+
+    nodo->data = *info; //Se le asigna la info al nodo creado al inicio
+
+    nodo->next = NULL; //Se crea el nodo next (para moverse por la lista)
+
+    //Si la lista esta vacia, el nuevo nodo es head (el inicio)
+    if (*head == NULL)
+    {
+        *head = nodo;
+        return;
+    }
+
+    //Si no, entonces ir al final de la lista
+    while (last->next != NULL)
+        last = last->next;
+
+    //poner el nodo despues del final (nueva ultima posicion)
+    last->next = nodo;
+    return;
+}
+/**
+ * Version modificada del insertEnd. Esta funcion permite insertar elementos dentro de las listas enlazadas
+ * que ya estan dentro de la lista mas grande
+*/
+void insert2(Node** head, string file)
+{
+    Node* nodo = new Node();
+
+    Node *last = *head;
+
+    nodo->info2 = file;
+
+    nodo->next = NULL;
+
+    if (*head == NULL)
+    {
+        *head = nodo;
+        return;
+    }
+
+    while (last->next != NULL)
+        last = last->next;
+
+    last->next = nodo;
+    return;
+}
+/**
+ * Funcion hecha para calcular la cantidad de canciones en el archivo checksum adjunto al dataset (el archivo
+ * se selecciona por nombre)
+*/
+int calculateSize(string name){
+
+    bool isfile = false; // Debido a que el checksum tiene 2 partes (id y direccion) se usa este boolean para
+                         // diferenciar id de direccion
+    fstream fileTM; //carga el archivo
+
+    string word;//este string se coloca en cada palabra. Es usado para leer el archivo palabra a palabra
+
+    int Size = 0; //cantidad de archivos
+
+    fileTM.open(name.c_str());//abre el archivo y lee su contenido como string
+
+    while(fileTM >> word){// este while funciona mientras el archivo tenga palabras para leer
+
+        if(isfile == true){//Si la palabra es la correcta aumenta el size en 1
+            Size += 1;
+            isfile = false;// Debido a la forma como se estructura el checksum se asume que la palabra
+                           // siguiente a la correcta es incorrecta
+        }
+
+        else{
+            isfile = true;// Si no es la correcta la ignora
+        }
+    }
+
+    return Size; //retorna la cantidad de archivos
+}
+/**
+ * Esta inicializa las listas y las carga con el primer 3% del dataset
+ */
+void setupList(Node** list1, Node** list2, Node** list3, int totalSize){
+
+    int size = totalSize * 0.01;//Calcula el 1% del total de archivos del dataset
+
+    int counter = 0;//Contador para recorrer el dataset
+
+    bool rightword = false;//Boolean para diferenciar entre direccion e id
+
+    fstream input;// Carga un archivo
+
+    string word, name;
+
+    name = "checksums";// Asigna el archivo al checksum
+
+    input.open(name.c_str());// Abre el archivo
+
+    /**
+     * Este while se encarga de recorrer el dataset recolectando las direcciones del primer 3% del
+     * dataset. Adicionalmente asigna cada porcentaje a cada una de las listas que se van a utilizar
+     * al inicio
+    */
+    while(counter <= size*3){
+        if(counter <= size and rightword == true){
+            input >> word;
+            insert2(list1, word);
+            rightword = false;
+            counter++;
+        }
+        else if(counter <= size*2 and rightword == true){
+            input >> word;
+            insert2(list2, word);
+            rightword = false;
+            counter++;
+        }
+        else if(counter <= size*3 and rightword == true){
+            input >> word;
+            insert2(list3, word);
+            rightword = false;
+            counter++;
+        }
+        else{
+            input >> word;
+            rightword = true;
+        }
+
+    }
+
+
+}
 
 Reproductor::Reproductor(QWidget *parent)
     : QMainWindow(parent)
