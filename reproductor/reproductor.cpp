@@ -138,7 +138,7 @@ void setupList(Node** list1, Node** list2, Node** list3, int totalSize){
 
     /**
      * Este while se encarga de recorrer el dataset recolectando las direcciones del primer 3% del
-     * dataset. Adicionalmente asigna cada porcentaje a cada una de las listas que se van a utilizar
+     * mismo. Adicionalmente asigna cada porcentaje a cada una de las listas que se van a utilizar
      * al inicio
     */
     while(counter <= size*3){
@@ -168,6 +168,72 @@ void setupList(Node** list1, Node** list2, Node** list3, int totalSize){
     }
 
 
+}
+
+/*
+Esta funcion inserta todas las direcciones del dataset seleccionado
+Es usada para cargar todas las canciones de una vez
+*/
+void insertAll(Node** listaG){
+
+    bool rightword = false;//Boolean para diferenciar entre direccion e id
+
+    fstream input;// Carga un archivo
+
+    string word, name;
+
+    name = "checksums";// Asigna el archivo al checksum
+
+    input.open(name.c_str());// Abre el archivo
+
+    while(input >> word)//Este while recorre el dataset agregando todas las direcciones sin excepcion
+    {
+        if(rightword == true){
+            insert2(listaG, word);
+            rightword = false;
+        }
+        else{
+            rightword = true;
+        }
+    }
+}
+
+/*
+Funcion para borrar nodos en cualquier posicion de la lista
+*/
+void deleteNode(Node **head, int pos)
+{
+   // Comprueba que la lista no este vacia
+   if (*head == NULL)
+      return;
+
+   // Guarda el primer nodo
+   Node* temp = *head;
+
+    //Comprueba si head necesita ser reemplazado
+    if (pos == 0)
+    {
+        *head = temp->next;// Cambia head
+        free(temp);//Libera la antigua head
+        return;
+    }
+
+    //Encuentra el nodo anterior a ser borrado
+    for (int i=0; temp!=NULL && i<pos-1; i++)
+         temp = temp->next;
+
+    //Si la posicion es mayor que el size de la lista el programa falla
+    if (temp == NULL || temp->next == NULL)
+         return;
+
+    // El nodo temp->next sera borrado
+    // Apunta el puntero al nodo siguiente al borrado
+    Node *next = temp->next->next;
+
+    // Desenlaza el nodo
+    free(temp->next);// Libera la memora
+
+    temp->next = next;//Desenlaza el nodo borrado
 }
 
 Reproductor::Reproductor(QWidget *parent)
