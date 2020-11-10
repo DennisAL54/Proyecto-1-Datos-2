@@ -22,6 +22,7 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSlider>
 #include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QSplitter>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -32,26 +33,35 @@ class Ui_Reproductor
 {
 public:
     QWidget *centralwidget;
+    QHBoxLayout *horizontalLayout_3;
+    QSplitter *splitter;
     QWidget *verticalLayoutWidget;
     QVBoxLayout *verticalLayout;
     QLabel *label;
-    QSpacerItem *verticalSpacer;
+    QListWidget *listWidget_2;
     QPushButton *pushButton;
+    QWidget *layoutWidget;
+    QVBoxLayout *verticalLayout_2;
     QListWidget *listWidget;
     QSlider *progess;
+    QGridLayout *gridLayout;
+    QLabel *label_2;
+    QLabel *songName;
+    QLabel *label_4;
+    QLabel *artistName;
+    QSpacerItem *horizontalSpacer_3;
+    QSpacerItem *horizontalSpacer_4;
+    QHBoxLayout *horizontalLayout_2;
+    QSpacerItem *horizontalSpacer;
     QPushButton *pushButton_2;
-    QWidget *horizontalLayoutWidget;
+    QPushButton *pushButton_3;
+    QPushButton *pushButton_4;
+    QSpacerItem *horizontalSpacer_5;
     QHBoxLayout *horizontalLayout;
+    QSpacerItem *horizontalSpacer_2;
     QLabel *label_3;
     QProgressBar *progressBar;
     QCheckBox *checkBox;
-    QPushButton *pushButton_3;
-    QWidget *gridLayoutWidget;
-    QGridLayout *gridLayout;
-    QLabel *label_2;
-    QLabel *label_4;
-    QLabel *songName;
-    QLabel *artistName;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -59,12 +69,16 @@ public:
     {
         if (Reproductor->objectName().isEmpty())
             Reproductor->setObjectName(QString::fromUtf8("Reproductor"));
-        Reproductor->resize(800, 600);
+        Reproductor->resize(808, 587);
         centralwidget = new QWidget(Reproductor);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
-        verticalLayoutWidget = new QWidget(centralwidget);
+        horizontalLayout_3 = new QHBoxLayout(centralwidget);
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        splitter = new QSplitter(centralwidget);
+        splitter->setObjectName(QString::fromUtf8("splitter"));
+        splitter->setOrientation(Qt::Horizontal);
+        verticalLayoutWidget = new QWidget(splitter);
         verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(10, 10, 160, 531));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
@@ -73,80 +87,127 @@ public:
 
         verticalLayout->addWidget(label);
 
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        listWidget_2 = new QListWidget(verticalLayoutWidget);
+        listWidget_2->setObjectName(QString::fromUtf8("listWidget_2"));
 
-        verticalLayout->addItem(verticalSpacer);
+        verticalLayout->addWidget(listWidget_2);
 
         pushButton = new QPushButton(verticalLayoutWidget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
 
         verticalLayout->addWidget(pushButton);
 
-        listWidget = new QListWidget(centralwidget);
+        splitter->addWidget(verticalLayoutWidget);
+        layoutWidget = new QWidget(splitter);
+        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
+        verticalLayout_2 = new QVBoxLayout(layoutWidget);
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
+        verticalLayout_2->setContentsMargins(0, 0, 0, 0);
+        listWidget = new QListWidget(layoutWidget);
         listWidget->setObjectName(QString::fromUtf8("listWidget"));
-        listWidget->setGeometry(QRect(185, 11, 601, 431));
-        progess = new QSlider(centralwidget);
+
+        verticalLayout_2->addWidget(listWidget);
+
+        progess = new QSlider(layoutWidget);
         progess->setObjectName(QString::fromUtf8("progess"));
-        progess->setGeometry(QRect(190, 450, 591, 20));
         progess->setOrientation(Qt::Horizontal);
-        pushButton_2 = new QPushButton(centralwidget);
+
+        verticalLayout_2->addWidget(progess);
+
+        gridLayout = new QGridLayout();
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        label_2 = new QLabel(layoutWidget);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+
+        gridLayout->addWidget(label_2, 0, 0, 1, 1);
+
+        songName = new QLabel(layoutWidget);
+        songName->setObjectName(QString::fromUtf8("songName"));
+
+        gridLayout->addWidget(songName, 0, 1, 1, 1);
+
+        label_4 = new QLabel(layoutWidget);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+
+        gridLayout->addWidget(label_4, 1, 0, 1, 1);
+
+        artistName = new QLabel(layoutWidget);
+        artistName->setObjectName(QString::fromUtf8("artistName"));
+
+        gridLayout->addWidget(artistName, 1, 1, 1, 1);
+
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::MinimumExpanding, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer_3, 0, 2, 1, 1);
+
+        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer_4, 1, 2, 1, 1);
+
+
+        verticalLayout_2->addLayout(gridLayout);
+
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_2->addItem(horizontalSpacer);
+
+        pushButton_2 = new QPushButton(layoutWidget);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(370, 480, 91, 31));
-        horizontalLayoutWidget = new QWidget(centralwidget);
-        horizontalLayoutWidget->setObjectName(QString::fromUtf8("horizontalLayoutWidget"));
-        horizontalLayoutWidget->setGeometry(QRect(510, 530, 291, 26));
-        horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
+
+        horizontalLayout_2->addWidget(pushButton_2);
+
+        pushButton_3 = new QPushButton(layoutWidget);
+        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
+
+        horizontalLayout_2->addWidget(pushButton_3);
+
+        pushButton_4 = new QPushButton(layoutWidget);
+        pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
+
+        horizontalLayout_2->addWidget(pushButton_4);
+
+        horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_2->addItem(horizontalSpacer_5);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_2);
+
+        horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        label_3 = new QLabel(horizontalLayoutWidget);
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_2);
+
+        label_3 = new QLabel(layoutWidget);
         label_3->setObjectName(QString::fromUtf8("label_3"));
 
         horizontalLayout->addWidget(label_3);
 
-        progressBar = new QProgressBar(horizontalLayoutWidget);
+        progressBar = new QProgressBar(layoutWidget);
         progressBar->setObjectName(QString::fromUtf8("progressBar"));
         progressBar->setValue(24);
 
         horizontalLayout->addWidget(progressBar);
 
-        checkBox = new QCheckBox(horizontalLayoutWidget);
+        checkBox = new QCheckBox(layoutWidget);
         checkBox->setObjectName(QString::fromUtf8("checkBox"));
 
         horizontalLayout->addWidget(checkBox);
 
-        pushButton_3 = new QPushButton(centralwidget);
-        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
-        pushButton_3->setGeometry(QRect(480, 480, 81, 31));
-        gridLayoutWidget = new QWidget(centralwidget);
-        gridLayoutWidget->setObjectName(QString::fromUtf8("gridLayoutWidget"));
-        gridLayoutWidget->setGeometry(QRect(200, 470, 160, 80));
-        gridLayout = new QGridLayout(gridLayoutWidget);
-        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
-        gridLayout->setContentsMargins(0, 0, 0, 0);
-        label_2 = new QLabel(gridLayoutWidget);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
 
-        gridLayout->addWidget(label_2, 0, 0, 1, 1);
+        verticalLayout_2->addLayout(horizontalLayout);
 
-        label_4 = new QLabel(gridLayoutWidget);
-        label_4->setObjectName(QString::fromUtf8("label_4"));
+        splitter->addWidget(layoutWidget);
 
-        gridLayout->addWidget(label_4, 1, 0, 1, 1);
-
-        songName = new QLabel(gridLayoutWidget);
-        songName->setObjectName(QString::fromUtf8("songName"));
-
-        gridLayout->addWidget(songName, 0, 1, 1, 1);
-
-        artistName = new QLabel(gridLayoutWidget);
-        artistName->setObjectName(QString::fromUtf8("artistName"));
-
-        gridLayout->addWidget(artistName, 1, 1, 1, 1);
+        horizontalLayout_3->addWidget(splitter);
 
         Reproductor->setCentralWidget(centralwidget);
         menubar = new QMenuBar(Reproductor);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 800, 21));
+        menubar->setGeometry(QRect(0, 0, 808, 21));
         Reproductor->setMenuBar(menubar);
         statusbar = new QStatusBar(Reproductor);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -162,14 +223,15 @@ public:
         Reproductor->setWindowTitle(QCoreApplication::translate("Reproductor", "Reproductor", nullptr));
         label->setText(QCoreApplication::translate("Reproductor", "Library", nullptr));
         pushButton->setText(QCoreApplication::translate("Reproductor", "Load LIbrary", nullptr));
+        label_2->setText(QCoreApplication::translate("Reproductor", "Playing:", nullptr));
+        songName->setText(QString());
+        label_4->setText(QCoreApplication::translate("Reproductor", "Artist: ", nullptr));
+        artistName->setText(QString());
         pushButton_2->setText(QCoreApplication::translate("Reproductor", "Play", nullptr));
+        pushButton_3->setText(QCoreApplication::translate("Reproductor", "Pause", nullptr));
+        pushButton_4->setText(QCoreApplication::translate("Reproductor", "Delete", nullptr));
         label_3->setText(QCoreApplication::translate("Reproductor", "Memory Usage", nullptr));
         checkBox->setText(QCoreApplication::translate("Reproductor", "Paginate", nullptr));
-        pushButton_3->setText(QCoreApplication::translate("Reproductor", "Pause", nullptr));
-        label_2->setText(QCoreApplication::translate("Reproductor", "Playing:", nullptr));
-        label_4->setText(QCoreApplication::translate("Reproductor", "Artist: ", nullptr));
-        songName->setText(QString());
-        artistName->setText(QString());
     } // retranslateUi
 
 };

@@ -132,7 +132,7 @@ void setupList(Node** list1, Node** list2, Node** list3, int totalSize){
 
     string word, name;
 
-    name = "checksums";// Asigna el archivo al checksum
+    name = "../fma_small/checksums";// Asigna el archivo al checksum
 
     input.open(name.c_str());// Abre el archivo
 
@@ -144,19 +144,19 @@ void setupList(Node** list1, Node** list2, Node** list3, int totalSize){
     while(counter <= size*3){
         if(counter <= size and rightword == true){
             input >> word;
-            insert2(list1, word);
+            insert2(list1, "../fma_small/"+word);
             rightword = false;
             counter++;
         }
         else if(counter <= size*2 and rightword == true){
             input >> word;
-            insert2(list2, word);
+            insert2(list2, "../fma_small/"+word);
             rightword = false;
             counter++;
         }
         else if(counter <= size*3 and rightword == true){
             input >> word;
-            insert2(list3, word);
+            insert2(list3, "../fma_small/"+word);
             rightword = false;
             counter++;
         }
@@ -182,7 +182,7 @@ void insertAll(Node** listaG){
 
     string word, name;
 
-    name = "checksums";// Asigna el archivo al checksum
+    name = "../fma_small/checksums";// Asigna el archivo al checksum
 
     input.open(name.c_str());// Abre el archivo
 
@@ -260,6 +260,18 @@ Reproductor::Reproductor(QWidget *parent)
 
 }
 
+void extractData(Node *node){
+     while (node != NULL)
+    {
+        while(node->data != NULL){
+            cout<<" "<<node->data->info2;
+            node->data = node->data->next;
+        }
+        node = node->next;
+    }
+
+}
+
 Reproductor::~Reproductor()
 {
     delete ui;
@@ -295,12 +307,26 @@ void Reproductor::on_duration(qint64 position)
 
 void Reproductor::on_pushButton_clicked()
 {
+    Node* lista1 = NULL;
+    Node* lista2 = NULL;
+    Node* lista3 = NULL;
+    Node* listaG = NULL;
+    setupList(&lista1, &lista2, &lista3, calculateSize("../fma_small/checksums"));
+    insertEnd(&listaG, &lista1);
+    insertEnd(&listaG, &lista2);
+    insertEnd(&listaG, &lista3);
+    while(listaG != NULL){
+        while(listaG->data != NULL){
+            playlist->addMedia(QMediaContent(QUrl::fromLocalFile(QString::fromStdString(listaG->data->info2))));
+            ui->listWidget->addItem(QString::fromStdString(listaG->data->info2));
+            listaG->data = listaG->data->next;
+        }
+        listaG = listaG->next;
+    }
+    //playlist->addMedia(QMediaContent(QUrl::fromLocalFile("../fma_small/001/001704.mp3")));
+    //ui->listWidget->addItem("001/001704.mp3");
 
-
-
-
-
-    //Crea nueva variable relacionada al buscador de archivos
+    /*//Crea nueva variable relacionada al buscador de archivos
     QStringList filenames = QFileDialog::getOpenFileNames(this, "Open a File");
     //Por cada archivo seleccionado lo agrega a la playlist y agrega el nombre al listWidget
     for(const QString & filename: filenames){
@@ -308,7 +334,7 @@ void Reproductor::on_pushButton_clicked()
         playlist->addMedia(QMediaContent(QUrl::fromLocalFile(filename)));
         //Agrega el nombre al listWidget
          ui->listWidget->addItem(filename);
-    }
+    }*/
 }
 
 void Reproductor::on_listWidget_activated()
