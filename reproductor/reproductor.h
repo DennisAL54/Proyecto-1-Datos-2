@@ -66,6 +66,8 @@ private slots:
 
     void on_listWidget_activated();
 
+    void on_pushButton_4_clicked();
+
 private:
     Ui::Reproductor *ui;
     QMediaPlayer* reproductor;

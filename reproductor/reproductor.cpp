@@ -316,3 +316,19 @@ void Reproductor::on_listWidget_activated()
     playlist->setCurrentIndex(ui->listWidget->currentRow());
     reproductor->play();
 }
+
+void Reproductor::on_pushButton_4_clicked()
+{
+    //playlist->removeMedia(0);
+    playlist->removeMedia(0,3);
+    int i = 0;
+    while(i<10){
+        i++;
+        ui->listWidget->takeItem(i);
+
+    }
+//    for (int i = 0;i<3;i++ ) {
+//        ui->listWidget->takeItem(i);
+//    }
+
+}

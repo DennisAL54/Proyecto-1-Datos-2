@@ -784,6 +784,27 @@ moc_reproductor.cpp: ../reproductor/reproductor.h \
 		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qaudio.h \
 		../../Qt/5.15.1/gcc_64/include/QtNetwork/qnetworkconfiguration.h \
 		../../Qt/5.15.1/gcc_64/include/QtCore/QDebug \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/QMediaPlaylist \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaplaylist.h \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediabindableinterface.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/QListWidgetItem \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qlistwidget.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qlistview.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qframe.h \
+		../../Qt/5.15.1/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../Qt/5.15.1/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../Qt/5.15.1/gcc_64/include/QtGui/qvalidator.h \
+		../../Qt/5.15.1/gcc_64/include/QtCore/qregularexpression.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qslider.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qstyle.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qtabbar.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qrubberband.h \
 		moc_predefs.h \
 		../../Qt/5.15.1/gcc_64/bin/moc
 	/home/roy/Qt/5.15.1/gcc_64/bin/moc $(DEFINES) --include /home/roy/Proyecto-1-Datos-2/build-reproductor-Desktop_Qt_5_15_1_GCC_64bit-Debug/moc_predefs.h -I/home/roy/Qt/5.15.1/gcc_64/mkspecs/linux-g++ -I/home/roy/Proyecto-1-Datos-2/reproductor -I/home/roy/Qt/5.15.1/gcc_64/include -I/home/roy/Qt/5.15.1/gcc_64/include/QtMultimedia -I/home/roy/Qt/5.15.1/gcc_64/include/QtWidgets -I/home/roy/Qt/5.15.1/gcc_64/include/QtGui -I/home/roy/Qt/5.15.1/gcc_64/include/QtNetwork -I/home/roy/Qt/5.15.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../reproductor/reproductor.h -o moc_reproductor.cpp
@@ -936,6 +957,27 @@ main.o: ../reproductor/main.cpp ../reproductor/reproductor.h \
 		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qaudio.h \
 		../../Qt/5.15.1/gcc_64/include/QtNetwork/qnetworkconfiguration.h \
 		../../Qt/5.15.1/gcc_64/include/QtCore/QDebug \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/QMediaPlaylist \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaplaylist.h \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediabindableinterface.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/QListWidgetItem \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qlistwidget.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qlistview.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qframe.h \
+		../../Qt/5.15.1/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../Qt/5.15.1/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../Qt/5.15.1/gcc_64/include/QtGui/qvalidator.h \
+		../../Qt/5.15.1/gcc_64/include/QtCore/qregularexpression.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qslider.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qstyle.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qtabbar.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qrubberband.h \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/QApplication \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/qapplication.h \
 		../../Qt/5.15.1/gcc_64/include/QtCore/qcoreapplication.h \
@@ -1072,30 +1114,15 @@ reproductor.o: ../reproductor/reproductor.cpp ../reproductor/reproductor.h \
 		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qaudio.h \
 		../../Qt/5.15.1/gcc_64/include/QtNetwork/qnetworkconfiguration.h \
 		../../Qt/5.15.1/gcc_64/include/QtCore/QDebug \
-		ui_reproductor.h \
-		../../Qt/5.15.1/gcc_64/include/QtWidgets/QApplication \
-		../../Qt/5.15.1/gcc_64/include/QtWidgets/qapplication.h \
-		../../Qt/5.15.1/gcc_64/include/QtCore/qcoreapplication.h \
-		../../Qt/5.15.1/gcc_64/include/QtCore/qeventloop.h \
-		../../Qt/5.15.1/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../Qt/5.15.1/gcc_64/include/QtGui/qguiapplication.h \
-		../../Qt/5.15.1/gcc_64/include/QtGui/qinputmethod.h \
-		../../Qt/5.15.1/gcc_64/include/QtWidgets/QCheckBox \
-		../../Qt/5.15.1/gcc_64/include/QtWidgets/qcheckbox.h \
-		../../Qt/5.15.1/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../Qt/5.15.1/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../Qt/5.15.1/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../Qt/5.15.1/gcc_64/include/QtWidgets/qlayout.h \
-		../../Qt/5.15.1/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../Qt/5.15.1/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../Qt/5.15.1/gcc_64/include/QtWidgets/QLabel \
-		../../Qt/5.15.1/gcc_64/include/QtWidgets/qlabel.h \
-		../../Qt/5.15.1/gcc_64/include/QtWidgets/qframe.h \
-		../../Qt/5.15.1/gcc_64/include/QtWidgets/QListWidget \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/QMediaPlaylist \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediaplaylist.h \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediabindableinterface.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/QListWidgetItem \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/qlistwidget.h \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/qlistview.h \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/qabstractitemview.h \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qframe.h \
 		../../Qt/5.15.1/gcc_64/include/QtCore/qabstractitemmodel.h \
 		../../Qt/5.15.1/gcc_64/include/QtCore/qitemselectionmodel.h \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
@@ -1108,6 +1135,26 @@ reproductor.o: ../reproductor/reproductor.cpp ../reproductor/reproductor.h \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/qstyle.h \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/qtabbar.h \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/qrubberband.h \
+		ui_reproductor.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/QApplication \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qapplication.h \
+		../../Qt/5.15.1/gcc_64/include/QtCore/qcoreapplication.h \
+		../../Qt/5.15.1/gcc_64/include/QtCore/qeventloop.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../Qt/5.15.1/gcc_64/include/QtGui/qguiapplication.h \
+		../../Qt/5.15.1/gcc_64/include/QtGui/qinputmethod.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/QCheckBox \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qcheckbox.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/QGridLayout \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qlayout.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/QLabel \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qlabel.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/QListWidget \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/QMenuBar \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/qmenubar.h \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/qmenu.h \
@@ -1122,7 +1169,14 @@ reproductor.o: ../reproductor/reproductor.cpp ../reproductor/reproductor.h \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/QStatusBar \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/qstatusbar.h \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/QVBoxLayout \
-		../../Qt/5.15.1/gcc_64/include/QtWidgets/QWidget
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/QWidget \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/QFileDialog \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qfiledialog.h \
+		../../Qt/5.15.1/gcc_64/include/QtCore/qdir.h \
+		../../Qt/5.15.1/gcc_64/include/QtCore/qfileinfo.h \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qdialog.h \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/QMediaMetaData \
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediametadata.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o reproductor.o ../reproductor/reproductor.cpp
 
 moc_reproductor.o: moc_reproductor.cpp 
