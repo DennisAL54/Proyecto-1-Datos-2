@@ -1166,6 +1166,8 @@ reproductor.o: ../reproductor/reproductor.cpp ../reproductor/reproductor.h \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/qpushbutton.h \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/QSlider \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/QSpacerItem \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/QSplitter \
+		../../Qt/5.15.1/gcc_64/include/QtWidgets/qsplitter.h \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/QStatusBar \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/qstatusbar.h \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/QVBoxLayout \
