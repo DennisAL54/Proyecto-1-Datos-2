@@ -259,19 +259,6 @@ Reproductor::Reproductor(QWidget *parent)
     connect(reproductor,&QMediaPlayer::durationChanged,this, &Reproductor::on_duration);
 
 }
-
-void extractData(Node *node){
-     while (node != NULL)
-    {
-        while(node->data != NULL){
-            cout<<" "<<node->data->info2;
-            node->data = node->data->next;
-        }
-        node = node->next;
-    }
-
-}
-
 Reproductor::~Reproductor()
 {
     delete ui;
@@ -323,6 +310,7 @@ void Reproductor::on_pushButton_clicked()
         }
         listaG = listaG->next;
     }
+
     //playlist->addMedia(QMediaContent(QUrl::fromLocalFile("../fma_small/001/001704.mp3")));
     //ui->listWidget->addItem("001/001704.mp3");
 
