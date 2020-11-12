@@ -9,6 +9,7 @@
 #include <bits/stdc++.h>
 #include <fstream>
 #include <string>
+#include <QFileInfo>
 
 using namespace std;
 
@@ -304,7 +305,7 @@ void Reproductor::on_pushButton_clicked()
     insertEnd(&listaG, &lista3);
     while(listaG != NULL){
         while(listaG->data != NULL){
-            playlist->addMedia(QMediaContent(QUrl::fromLocalFile(QString::fromStdString(listaG->data->info2))));
+            playlist->addMedia(QMediaContent(QUrl::fromLocalFile(QFileInfo(QString::fromStdString(listaG->data->info2)).absoluteFilePath())));
             ui->listWidget->addItem(QString::fromStdString(listaG->data->info2));
             listaG->data = listaG->data->next;
         }
