@@ -8,4 +8,5 @@ int main(int argc, char *argv[])
     Reproductor w;
     w.show();
     return a.exec();
+
 }

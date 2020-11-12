@@ -1,5 +1,6 @@
 #include "reproductor.h"
 #include "ui_reproductor.h"
+#include "memoria.h"
 #include <QMediaPlayer>
 #include <QFileDialog>
 #include <QMediaMetaData>
@@ -10,9 +11,14 @@
 #include <fstream>
 #include <string>
 #include <QFileInfo>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <cstdlib>
+#include <unistd.h>
+#include <fcntl.h>
 
 using namespace std;
-
 
 class Node
 {
@@ -237,6 +243,47 @@ void deleteNode(Node **head, int pos)
     temp->next = next;//Desenlaza el nodo borrado
 }
 
+std::string extractFile(const char *filename, size_t bufferSize=512)
+{
+    int fd = open(filename, O_RDONLY);
+    std::string output;
+
+    if (fd==-1)
+        return "";      /* error opening */
+
+    char *buffer = (char*)malloc(bufferSize);
+    if (buffer==NULL)
+        return "";      /* Can't allocate memory */
+
+    int datalength;
+    while ((datalength = read(fd, buffer, bufferSize)) > 0)
+        output.append(buffer, datalength);
+
+    close(fd);
+    return output;
+}
+
+float usedMemory() {
+    std::string memInfo = extractFile("/proc/self/statm");
+
+    if (memInfo.empty()) {
+        std::cerr << "Error al leer información\n";
+        std::terminate();
+    }
+    //while (true) {
+        unsigned long size;
+
+        std::stringstream ss(memInfo);
+
+        ss >> size;
+
+        float x = size * getpagesize() / 1048576.0;
+
+        return x;
+
+    //}
+}
+
 Reproductor::Reproductor(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::Reproductor)
@@ -272,6 +319,9 @@ void Reproductor::on_progess_sliderMoved(int position)
 
 void Reproductor::on_pushButton_2_clicked()
 {
+    float x = usedMemory();
+    QString b = QString::number(x);
+    qDebug() << b;
 
     reproductor->play();
 

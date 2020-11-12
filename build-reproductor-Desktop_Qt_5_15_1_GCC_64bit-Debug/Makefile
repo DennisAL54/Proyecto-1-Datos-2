@@ -53,8 +53,10 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../reproductor/main.cpp \
+		../reproductor/memoria.cpp \
 		../reproductor/reproductor.cpp moc_reproductor.cpp
 OBJECTS       = main.o \
+		memoria.o \
 		reproductor.o \
 		moc_reproductor.o
 DIST          = ../../Qt/5.15.1/gcc_64/mkspecs/features/spec_pre.prf \
@@ -234,7 +236,9 @@ DIST          = ../../Qt/5.15.1/gcc_64/mkspecs/features/spec_pre.prf \
 		../../Qt/5.15.1/gcc_64/mkspecs/features/exceptions.prf \
 		../../Qt/5.15.1/gcc_64/mkspecs/features/yacc.prf \
 		../../Qt/5.15.1/gcc_64/mkspecs/features/lex.prf \
-		../reproductor/reproductor.pro ../reproductor/reproductor.h ../reproductor/main.cpp \
+		../reproductor/reproductor.pro ../reproductor/memoria.h \
+		../reproductor/reproductor.h ../reproductor/main.cpp \
+		../reproductor/memoria.cpp \
 		../reproductor/reproductor.cpp
 QMAKE_TARGET  = reproductor
 DESTDIR       = 
@@ -619,8 +623,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../Qt/5.15.1/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../reproductor/reproductor.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../reproductor/main.cpp ../reproductor/reproductor.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../reproductor/memoria.h ../reproductor/reproductor.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../reproductor/main.cpp ../reproductor/memoria.cpp ../reproductor/reproductor.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../reproductor/reproductor.ui $(DISTDIR)/
 	$(COPY_FILE) --parents reproductor_en_US.ts $(DISTDIR)/
 
@@ -987,6 +991,9 @@ main.o: ../reproductor/main.cpp ../reproductor/reproductor.h \
 		../../Qt/5.15.1/gcc_64/include/QtGui/qinputmethod.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../reproductor/main.cpp
 
+memoria.o: ../reproductor/memoria.cpp ../reproductor/memoria.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o memoria.o ../reproductor/memoria.cpp
+
 reproductor.o: ../reproductor/reproductor.cpp ../reproductor/reproductor.h \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/QMainWindow \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/qmainwindow.h \
@@ -1172,13 +1179,15 @@ reproductor.o: ../reproductor/reproductor.cpp ../reproductor/reproductor.h \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/qstatusbar.h \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/QWidget \
+		../reproductor/memoria.h \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/QFileDialog \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/qfiledialog.h \
 		../../Qt/5.15.1/gcc_64/include/QtCore/qdir.h \
 		../../Qt/5.15.1/gcc_64/include/QtCore/qfileinfo.h \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/qdialog.h \
 		../../Qt/5.15.1/gcc_64/include/QtMultimedia/QMediaMetaData \
-		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediametadata.h
+		../../Qt/5.15.1/gcc_64/include/QtMultimedia/qmediametadata.h \
+		../../Qt/5.15.1/gcc_64/include/QtCore/QFileInfo
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o reproductor.o ../reproductor/reproductor.cpp
 
 moc_reproductor.o: moc_reproductor.cpp 
