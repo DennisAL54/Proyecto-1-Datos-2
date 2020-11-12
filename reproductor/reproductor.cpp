@@ -258,7 +258,6 @@ Reproductor::Reproductor(QWidget *parent)
     connect(reproductor,&QMediaPlayer::positionChanged,this, &Reproductor::on_position);
     //Conecta la posicion de las barra de progreso con la de la posicion de la de la cancion
     connect(reproductor,&QMediaPlayer::durationChanged,this, &Reproductor::on_duration);
-
 }
 Reproductor::~Reproductor()
 {
@@ -299,6 +298,7 @@ void Reproductor::on_pushButton_clicked()
     Node* lista2 = NULL;
     Node* lista3 = NULL;
     Node* listaG = NULL;
+    //QScrollBar *bar = ui->listWidget->verticalScrollBar();
     setupList(&lista1, &lista2, &lista3, calculateSize("../fma_small/checksums"));
     insertEnd(&listaG, &lista1);
     insertEnd(&listaG, &lista2);
