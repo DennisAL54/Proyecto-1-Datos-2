@@ -23,7 +23,7 @@
 using namespace std;
 
 int globalCounter = 0;//Para recorrer checksums
-int listCounter = 1;//Para evitar que funcione up/down si se llego al final
+int listCounter = 100;//Para evitar que funcione up/down si se llego al final
 
 class Node
 {
@@ -270,6 +270,7 @@ Node* lista2 = NULL;
 Node* lista3 = NULL;
 Node* listaG = NULL;
 int sizeofList = calculateSize("../fma_small/checksums")*0.01;
+
 Reproductor::Reproductor(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::Reproductor)
@@ -334,20 +335,22 @@ void Reproductor::on_pushButton_clicked()
     insertEnd(&listaG, &lista2);
     insertEnd(&listaG, &lista3);
 
+    Node* pivot = listaG;
 
-    while(listaG != NULL){
-        while(listaG->data != NULL){
+
+    while(pivot != NULL){
+        while(pivot->data != NULL){
             if(counterTrack >= 0 and counterTrack <= sizeofList){
-                playlist->addMedia(QMediaContent(QUrl::fromLocalFile(QFileInfo(QString::fromStdString(listaG->data->info2)).absoluteFilePath())));
-                ui->listWidget->addItem(QString::fromStdString(listaG->data->info2));
-                listaG->data = listaG->data->next;
+                playlist->addMedia(QMediaContent(QUrl::fromLocalFile(QFileInfo(QString::fromStdString(pivot->data->info2)).absoluteFilePath())));
+                ui->listWidget->addItem(QString::fromStdString(pivot->data->info2));
+                pivot->data = pivot->data->next;
                 counterTrack++;
             }
             else{
-               listaG->data = listaG->data->next;
+               pivot->data = pivot->data->next;
             }
         }
-        listaG = listaG->next;
+        pivot = pivot->next;
     }
 
     float x = getMemAvailable()/1048576.00;
@@ -384,25 +387,27 @@ void Reproductor::on_pushButton_5_clicked()
         qDebug()<<"Action not permited";
     }
     else if(listCounter == 2){
-        int counterTrack = 0;
+
+    }
+    else if(listCounter == 100){
         listCounter = listCounter - 1;
-        while(listaG != NULL){
-            while(listaG->data != NULL){
+        Node* pivot2 = listaG;
+        int counterTrack = 0;
+
+        while(pivot2 != NULL){
+            while(pivot2->data != NULL){
                 if(counterTrack >= 0 and counterTrack <= sizeofList){
-                    playlist->addMedia(QMediaContent(QUrl::fromLocalFile(QFileInfo(QString::fromStdString(listaG->data->info2)).absoluteFilePath())));
-                    ui->listWidget->addItem(QString::fromStdString(listaG->data->info2));
-                    listaG->data = listaG->data->next;
+                    playlist->addMedia(QMediaContent(QUrl::fromLocalFile(QFileInfo(QString::fromStdString(pivot2->data->info2)).absoluteFilePath())));
+                    ui->listWidget->addItem(QString::fromStdString(pivot2->data->info2));
+                    pivot2->data = pivot2->data->next;
                     counterTrack++;
                 }
                 else{
-                   listaG->data = listaG->data->next;
+                   pivot2->data = pivot2->data->next;
                 }
             }
-            listaG = listaG->next;
+            pivot2 = pivot2->next;
         }
-    }
-    else if(listCounter == 100){
-
     }
     else{
         listCounter = listCounter - 1;
@@ -420,21 +425,23 @@ void Reproductor::on_pushButton_6_clicked()
         qDebug()<<"Returned to begining";
     }
     else if(listCounter == 1){
-        int counterTrack = 0;
         listCounter = listCounter + 1;
-        while(listaG != NULL){
-            while(listaG->data != NULL){
+        Node* pivot = listaG;
+        int counterTrack = 0;
+
+        while(pivot != NULL){
+            while(pivot->data != NULL){
                 if(counterTrack >= 0 and counterTrack <= sizeofList){
-                    playlist->addMedia(QMediaContent(QUrl::fromLocalFile(QFileInfo(QString::fromStdString(listaG->data->info2)).absoluteFilePath())));
-                    ui->listWidget->addItem(QString::fromStdString(listaG->data->info2));
-                    listaG->data = listaG->data->next;
+                    playlist->addMedia(QMediaContent(QUrl::fromLocalFile(QFileInfo(QString::fromStdString(pivot->data->info2)).absoluteFilePath())));
+                    ui->listWidget->addItem(QString::fromStdString(pivot->data->info2));
+                    pivot->data = pivot->data->next;
                     counterTrack++;
                 }
                 else{
-                   listaG->data = listaG->data->next;
+                   pivot->data = pivot->data->next;
                 }
             }
-            listaG = listaG->next;
+            pivot = pivot->next;
         }
     }
     else{
