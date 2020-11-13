@@ -18,7 +18,6 @@
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSlider>
 #include <QtWidgets/QSpacerItem>
@@ -62,7 +61,7 @@ public:
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer_2;
     QLabel *label_3;
-    QProgressBar *progressBar;
+    QLabel *mem;
     QCheckBox *checkBox;
     QMenuBar *menubar;
     QStatusBar *statusbar;
@@ -198,11 +197,10 @@ public:
 
         horizontalLayout->addWidget(label_3);
 
-        progressBar = new QProgressBar(layoutWidget);
-        progressBar->setObjectName(QString::fromUtf8("progressBar"));
-        progressBar->setValue(24);
+        mem = new QLabel(layoutWidget);
+        mem->setObjectName(QString::fromUtf8("mem"));
 
-        horizontalLayout->addWidget(progressBar);
+        horizontalLayout->addWidget(mem);
 
         checkBox = new QCheckBox(layoutWidget);
         checkBox->setObjectName(QString::fromUtf8("checkBox"));
@@ -245,6 +243,7 @@ public:
         pushButton_3->setText(QCoreApplication::translate("Reproductor", "Pause", nullptr));
         pushButton_4->setText(QCoreApplication::translate("Reproductor", "Delete", nullptr));
         label_3->setText(QCoreApplication::translate("Reproductor", "Memory Usage", nullptr));
+        mem->setText(QString());
         checkBox->setText(QCoreApplication::translate("Reproductor", "Paginate", nullptr));
     } // retranslateUi
 

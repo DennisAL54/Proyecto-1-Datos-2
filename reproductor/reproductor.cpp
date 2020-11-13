@@ -17,6 +17,7 @@
 #include <cstdlib>
 #include <unistd.h>
 #include <fcntl.h>
+#include <fstream>
 
 using namespace std;
 
@@ -243,46 +244,21 @@ void deleteNode(Node **head, int pos)
     temp->next = next;//Desenlaza el nodo borrado
 }
 
-std::string extractFile(const char *filename, size_t bufferSize=512)
-{
-    int fd = open(filename, O_RDONLY);
-    std::string output;
-
-    if (fd==-1)
-        return "";      /* error opening */
-
-    char *buffer = (char*)malloc(bufferSize);
-    if (buffer==NULL)
-        return "";      /* Can't allocate memory */
-
-    int datalength;
-    while ((datalength = read(fd, buffer, bufferSize)) > 0)
-        output.append(buffer, datalength);
-
-    close(fd);
-    return output;
-}
-
-float usedMemory() {
-    std::string memInfo = extractFile("/proc/self/statm");
-
-    if (memInfo.empty()) {
-        std::cerr << "Error al leer información\n";
-        std::terminate();
+long getMemAvailable() {
+    std::string token;
+    std::ifstream file("/proc/meminfo");
+    while(file >> token) {
+        if(token == "MemAvailable:") {
+            unsigned long mem;
+            if(file >> mem) {
+                return mem;
+            } else {
+                return 0;
+            }
+        }
     }
-    //while (true) {
-        unsigned long size;
-
-        std::stringstream ss(memInfo);
-
-        ss >> size;
-
-        float x = size * getpagesize() / 1048576.0;
-
-        return x;
-
-    //}
-}
+    return 0; // nothing found
+    }
 
 Reproductor::Reproductor(QWidget *parent)
     : QMainWindow(parent)
@@ -319,10 +295,6 @@ void Reproductor::on_progess_sliderMoved(int position)
 
 void Reproductor::on_pushButton_2_clicked()
 {
-    float x = usedMemory();
-    QString b = QString::number(x);
-    qDebug() << b;
-
     reproductor->play();
 
 }
@@ -361,6 +333,11 @@ void Reproductor::on_pushButton_clicked()
         }
         listaG = listaG->next;
     }
+
+    float x = getMemAvailable()/1048576.00;
+    QString b = QString::number(x);
+    qDebug() << b;
+    ui->mem->setText(b + " mb");
 
     //playlist->addMedia(QMediaContent(QUrl::fromLocalFile("../fma_small/001/001704.mp3")));
     //ui->listWidget->addItem("001/001704.mp3");
@@ -407,3 +384,5 @@ void Reproductor::on_pushButton_6_clicked()
 {
 
 }
+
+
