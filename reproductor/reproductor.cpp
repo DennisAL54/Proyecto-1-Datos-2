@@ -248,22 +248,49 @@ void deleteNode(Node **head, int pos)
     temp->next = next;//Desenlaza el nodo borrado
 }
 
-long getMemAvailable() {
-    std::string token;
-    std::ifstream file("/proc/meminfo");
-    while(file >> token) {
-        if(token == "MemAvailable:") {
-            unsigned long mem;
-            if(file >> mem) {
-                return mem;
-            } else {
-                return 0;
-            }
-        }
-    }
-    return 0; // nothing found
-    }
+using namespace std;
 
+std::string extractFile(const char *filename, size_t bufferSize=512)
+{
+    int fd = open(filename, O_RDONLY);
+    std::string output;
+
+    if (fd==-1)
+        return "";      /* error opening */
+
+    char *buffer = (char*)malloc(bufferSize);
+    if (buffer==NULL)
+        return "";      /* Can't allocate memory */
+
+    int datalength;
+    while ((datalength = read(fd, buffer, bufferSize)) > 0)
+        output.append(buffer, datalength);
+
+    close(fd);
+    return output;
+}
+
+unsigned long usage(){
+
+    std::string memInfo = extractFile ("/proc/self/statm");
+
+    if (memInfo.empty())
+    {
+        std::cerr << "Error al leer información\n";
+        std::terminate();
+    }
+    unsigned long size;
+
+    std::stringstream ss (memInfo);
+
+    ss >> size;
+
+    cout << "Tamaño total: "<<size * getpagesize()/1048576.00 <<"\n";
+
+
+    return size * getpagesize()*0.00000095367432;
+
+}
 
 Node* lista1 = NULL;
 Node* lista2 = NULL;
@@ -307,12 +334,20 @@ void Reproductor::on_progess_sliderMoved(int position)
 void Reproductor::on_pushButton_2_clicked()
 {
     reproductor->play();
+    float x = usage();
+    QString b = QString::number(x);
+    qDebug() << b;
+    ui->mem->setText(b + " mb");
 
 }
 
 void Reproductor::on_pushButton_3_clicked()
 {
     reproductor->pause();
+    float x = usage();
+    QString b = QString::number(x);
+    qDebug() << b;
+    ui->mem->setText(b + " mb");
 }
 
 void Reproductor::on_position(qint64 position)
@@ -353,7 +388,7 @@ void Reproductor::on_pushButton_clicked()
         pivot = pivot->next;
     }
 
-    float x = getMemAvailable()/1048576.00;
+    float x = usage();
     QString b = QString::number(x);
     qDebug() << b;
     ui->mem->setText(b + " mb");
