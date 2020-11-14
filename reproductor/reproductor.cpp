@@ -1,6 +1,7 @@
 #include "reproductor.h"
 #include "ui_reproductor.h"
 #include "memoria.h"
+#include "metadata.h"
 #include <QMediaPlayer>
 #include <QFileDialog>
 #include <QMediaMetaData>
@@ -17,8 +18,8 @@
 #include <cstdlib>
 #include <unistd.h>
 #include <fcntl.h>
-#include <fstream>
 #include <QCheckBox>
+
 
 using namespace std;
 
@@ -320,10 +321,10 @@ void Reproductor::on_progess_sliderMoved(int position)
 void Reproductor::on_pushButton_2_clicked()
 {
     reproductor->play();
-    //float x = usage();
-    //QString b = QString::number(x);
-    //qDebug() << b;
-    //ui->mem->setText(b + " mb");
+    float x = usage();
+    QString b = QString::number(x);
+    qDebug() << b;
+    ui->mem->setText(b + " mb");
 
     //ui->songName->setText()
 
@@ -333,10 +334,10 @@ void Reproductor::on_pushButton_2_clicked()
 void Reproductor::on_pushButton_3_clicked()
 {
     reproductor->pause();
-    //float x = usage();
-    //QString b = QString::number(x);
-    //qDebug() << b;
-    //ui->mem->setText(b + " mb");
+    float x = usage();
+    QString b = QString::number(x);
+    qDebug() << b;
+    ui->mem->setText(b + " mb");
 }
 
 void Reproductor::on_position(qint64 position)
