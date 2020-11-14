@@ -259,7 +259,7 @@ std::string extractFile(const char *filename, size_t bufferSize=512)
     return output;
 }
 
-/*unsigned long usage(){
+float usage(){
 
     std::string memInfo = extractFile ("/proc/self/statm");
 
@@ -274,12 +274,12 @@ std::string extractFile(const char *filename, size_t bufferSize=512)
 
     ss >> size;
 
-    cout << "Tamaño total: "<<size * getpagesize()/1048576.00 <<"\n";
+    cout << "Tamaño total: "<<size * getpagesize() <<"\n";
 
+    float mem = size * getpagesize()*0.0000000095367432;
+    return mem;
 
-    return size * getpagesize()*0.00000095367432;
-
-}*/
+}
 
 Node* listaG = NULL;
 int sizeofList = calculateSize("../fma_small/checksums")*0.01;
@@ -375,10 +375,10 @@ void Reproductor::on_pushButton_clicked()
             }
         }
         listLoaded = true;
-        //float x = usage();
-        //QString b = QString::number(x);
-        //qDebug() << b;
-        //ui->mem->setText(b + " mb");
+        float x = usage();
+        QString b = QString::number(x);
+        qDebug() << b;
+        ui->mem->setText(b + " mb");
     }
     else{
         qDebug() << "Library Already Loaded";
@@ -438,6 +438,11 @@ void Reproductor::on_pushButton_5_clicked()
     else{
         qDebug() << "Please Load Library First";
     }
+
+    float x = usage();
+    QString b = QString::number(x);
+    qDebug() << b;
+    ui->mem->setText(b + " mb");
 }
 
 void Reproductor::on_pushButton_6_clicked()
@@ -479,6 +484,11 @@ void Reproductor::on_pushButton_6_clicked()
     else{
         qDebug() << "Please Load Library First";
     }
+
+    float x = usage();
+    QString b = QString::number(x);
+    qDebug() << b;
+    ui->mem->setText(b + " mb");
 }
 
 
