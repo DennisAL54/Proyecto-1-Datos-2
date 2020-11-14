@@ -1,4 +1,8 @@
 #include <string>
+#include <iostream>
+#include<fstream>
+#include <QString>
+#include <string.h>
 
 
 #ifndef METADATA_H
@@ -9,7 +13,7 @@ class metadata
 {
 public:
     metadata();
-    int data();
+    QString data(QString id);
 };
 
 #endif // METADATA_H

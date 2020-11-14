@@ -16,7 +16,7 @@ public:
       * @param La unica entrada es el archivo que contiene los datos para analizar
       * @return Devuelve la cantidad de RAM que usa la aplicacion
       */
-    long getMemAvailable();
+    //long usage();
 };
 
 #endif // MEMORIA_H

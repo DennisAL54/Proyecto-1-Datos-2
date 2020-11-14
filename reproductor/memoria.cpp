@@ -5,18 +5,26 @@ memoria::memoria()
 
 }
 
-long memoria::getMemAvailable() {
-    std::string token;
-    std::ifstream file("/proc/meminfo");
-    while(file >> token) {
-        if(token == "MemAvailable:") {
-            unsigned long mem;
-            if(file >> mem) {
-                return mem;
-            } else {
-                return 0;
-            }
-        }
-    }
-    return 0; // nothing found
-}
+//float memoria::usage(){
+
+//    std::string memInfo = extractFile ("/proc/self/statm");
+
+//    if (memInfo.empty())
+//    {
+//        std::cerr << "Error\n";
+//        std::terminate();
+//    }
+//    unsigned long size;
+
+//    std::stringstream ss (memInfo);
+
+//    ss >> size;
+
+//    cout << "Tamaño total: "<<size * getpagesize() <<"\n";
+
+//    float mem = size * getpagesize()*0.0000000095367432;
+//    return mem;
+
+//}
+//    return 0; // nothing found
+//}
