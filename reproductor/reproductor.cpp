@@ -23,7 +23,8 @@
 using namespace std;
 
 int globalCounter = 0;//Para recorrer checksums
-int listCounter = 100;//Para evitar que funcione up/down si se llego al final
+int listCounter = 1;//Para evitar que funcione up/down si se llego al final
+bool listLoaded = false;
 
 class Node
 {
@@ -132,7 +133,9 @@ int calculateSize(string name){
 /**
  * Esta inicializa las listas y las carga con el primer 3% del dataset
  */
-void setupList(Node** list1, Node** list2, Node** list3, int totalSize){
+void generateList(Node** list, int totalSize, int position){
+
+    int Sfrom = 0;
 
     int size = totalSize * 0.01;//Calcula el 1% del total de archivos del dataset
 
@@ -146,39 +149,25 @@ void setupList(Node** list1, Node** list2, Node** list3, int totalSize){
 
     name = "../fma_small/checksums";// Asigna el archivo al checksum
 
-    input.open(name.c_str());// Abre el archivo
+    input.open(name.c_str());
 
-    /**
-     * Este while se encarga de recorrer el dataset recolectando las direcciones del primer 3% del
-     * mismo. Adicionalmente asigna cada porcentaje a cada una de las listas que se van a utilizar
-     * al inicio
-    */
-    while(counter <= size*3){
-        if(counter <= size and rightword == true){
+    while(counter <= size){
+        if(rightword == true and Sfrom >= position){
             input >> word;
-            insert2(list1, "../fma_small/"+word);
+            insert2(list, "../fma_small/" + word);
             rightword = false;
             counter++;
         }
-        else if(counter <= size*2 and rightword == true){
+        else if(Sfrom < position and rightword == true){
             input >> word;
-            insert2(list2, "../fma_small/"+word);
             rightword = false;
-            counter++;
-        }
-        else if(counter <= size*3 and rightword == true){
-            input >> word;
-            insert2(list3, "../fma_small/"+word);
-            rightword = false;
-            counter++;
+            Sfrom++;
         }
         else{
-            input >> word;
-            rightword = true;
+           input >> word;
+           rightword = true;
         }
-
     }
-
 
 }
 
@@ -270,7 +259,7 @@ std::string extractFile(const char *filename, size_t bufferSize=512)
     return output;
 }
 
-unsigned long usage(){
+/*unsigned long usage(){
 
     std::string memInfo = extractFile ("/proc/self/statm");
 
@@ -290,11 +279,8 @@ unsigned long usage(){
 
     return size * getpagesize()*0.00000095367432;
 
-}
+}*/
 
-Node* lista1 = NULL;
-Node* lista2 = NULL;
-Node* lista3 = NULL;
 Node* listaG = NULL;
 int sizeofList = calculateSize("../fma_small/checksums")*0.01;
 
@@ -334,20 +320,20 @@ void Reproductor::on_progess_sliderMoved(int position)
 void Reproductor::on_pushButton_2_clicked()
 {
     reproductor->play();
-    float x = usage();
-    QString b = QString::number(x);
-    qDebug() << b;
-    ui->mem->setText(b + " mb");
+    //float x = usage();
+    //QString b = QString::number(x);
+    //qDebug() << b;
+    //ui->mem->setText(b + " mb");
 
 }
 
 void Reproductor::on_pushButton_3_clicked()
 {
     reproductor->pause();
-    float x = usage();
-    QString b = QString::number(x);
-    qDebug() << b;
-    ui->mem->setText(b + " mb");
+    //float x = usage();
+    //QString b = QString::number(x);
+    //qDebug() << b;
+    //ui->mem->setText(b + " mb");
 }
 
 void Reproductor::on_position(qint64 position)
@@ -362,47 +348,38 @@ void Reproductor::on_duration(qint64 position)
 
 void Reproductor::on_pushButton_clicked()
 {
-    if(ui->checkBox->isChecked()){
-        int counterTrack = 0;
-
-
-        setupList(&lista1, &lista2, &lista3, calculateSize("../fma_small/checksums"));
-        insertEnd(&listaG, &lista1);
-        insertEnd(&listaG, &lista2);
-        insertEnd(&listaG, &lista3);
-
-        Node* pivot = listaG;
-
-
-        while(pivot != NULL){
-            while(pivot->data != NULL){
-                if(counterTrack >= 0 and counterTrack <= sizeofList){
-                    playlist->addMedia(QMediaContent(QUrl::fromLocalFile(QFileInfo(QString::fromStdString(pivot->data->info2)).absoluteFilePath())));
-                    ui->listWidget->addItem(QString::fromStdString(pivot->data->info2));
-                    pivot->data = pivot->data->next;
-                    counterTrack++;
+    if(listLoaded == false){
+        Node* lista1 = NULL;
+        if(ui->checkBox->isChecked()){
+            generateList(&lista1, calculateSize("../fma_small/checksums"), globalCounter);
+            insertEnd(&listaG, &lista1);
+            while (listaG != NULL)
+                {
+                    while(listaG->data != NULL){
+                        playlist->addMedia(QMediaContent(QUrl::fromLocalFile(QFileInfo(QString::fromStdString(listaG->data->info2)).absoluteFilePath())));
+                        ui->listWidget->addItem(QString::fromStdString(listaG->data->info2));
+                        listaG->data = listaG->data->next;
+                    }
+                    listaG = listaG->next;
                 }
-                else{
-                   pivot->data = pivot->data->next;
-                }
-            }
-            pivot = pivot->next;
         }
-
+        else{
+            insertAll(&listaG);
+            while(listaG != NULL){
+                playlist->addMedia(QMediaContent(QUrl::fromLocalFile(QFileInfo(QString::fromStdString(listaG->data->info2)).absoluteFilePath())));
+                ui->listWidget->addItem(QString::fromStdString(listaG->data->info2));
+                listaG = listaG->next;
+            }
+        }
+        listLoaded = true;
+        //float x = usage();
+        //QString b = QString::number(x);
+        //qDebug() << b;
+        //ui->mem->setText(b + " mb");
     }
     else{
-        insertAll(&listaG);
-        while(listaG != NULL){
-            playlist->addMedia(QMediaContent(QUrl::fromLocalFile(QFileInfo(QString::fromStdString(listaG->data->info2)).absoluteFilePath())));
-            ui->listWidget->addItem(QString::fromStdString(listaG->data->info2));
-            listaG = listaG->next;
-        }
+        qDebug() << "Library Already Loaded";
     }
-
-    float x = usage();
-    QString b = QString::number(x);
-    qDebug() << b;
-    ui->mem->setText(b + " mb");
 }
 
 void Reproductor::on_listWidget_activated()
@@ -413,86 +390,88 @@ void Reproductor::on_listWidget_activated()
 
 void Reproductor::on_pushButton_4_clicked()
 {
-    //playlist->removeMedia(0);
-    playlist->removeMedia(0,3);
-    int i = 0;
-    while(i<10){
-        i++;
-        ui->listWidget->takeItem(i);
-
-    }
-//    for (int i = 0;i<3;i++ ) {
-//        ui->listWidget->takeItem(i);
-//    }
-
+    ui->listWidget->clear();
+    playlist->removeMedia(0,sizeofList);
+    listLoaded = false;
 }
 
 void Reproductor::on_pushButton_5_clicked()
 {
-    if(listCounter == 1){
-        qDebug()<<"Action not permited";
-    }
-    else if(listCounter == 2){
+    if(listLoaded == true){
+        if(listCounter == 1){
+            qDebug()<<"Action not permited";
+        }
+        else{
+            Node* lista1 = NULL;
+            globalCounter -= 80;
 
-    }
-    else if(listCounter == 100){
-        listCounter = listCounter - 1;
-        Node* pivot2 = listaG;
-        int counterTrack = 0;
+            playlist->removeMedia(0,sizeofList);
 
-        while(pivot2 != NULL){
-            while(pivot2->data != NULL){
-                if(counterTrack >= 0 and counterTrack <= sizeofList){
-                    playlist->addMedia(QMediaContent(QUrl::fromLocalFile(QFileInfo(QString::fromStdString(pivot2->data->info2)).absoluteFilePath())));
-                    ui->listWidget->addItem(QString::fromStdString(pivot2->data->info2));
-                    pivot2->data = pivot2->data->next;
-                    counterTrack++;
+            ui->listWidget->clear();
+
+            deleteNode(&listaG, 1);
+
+            listCounter = listCounter - 1;
+
+            generateList(&lista1, calculateSize("../fma_small/checksums"), globalCounter);
+
+            insertEnd(&listaG, &lista1);
+
+            while (listaG != NULL)
+                {
+                    while(listaG->data != NULL){
+                        playlist->addMedia(QMediaContent(QUrl::fromLocalFile(QFileInfo(QString::fromStdString(listaG->data->info2)).absoluteFilePath())));
+                        ui->listWidget->addItem(QString::fromStdString(listaG->data->info2));
+                        listaG->data = listaG->data->next;
+                    }
+                    listaG = listaG->next;
                 }
-                else{
-                   pivot2->data = pivot2->data->next;
-                }
-            }
-            pivot2 = pivot2->next;
+            qDebug()<<"Success";
         }
     }
     else{
-        listCounter = listCounter - 1;
-        qDebug()<<"Success";
+        qDebug() << "Please Load Library First";
     }
 }
 
 void Reproductor::on_pushButton_6_clicked()
 {
-    if(listCounter == 100){
-        qDebug()<<"Action not permited";
-    }
-    else if(listCounter == 99){
-        listCounter = listCounter + 1;
-        qDebug()<<"Returned to begining";
-    }
-    else if(listCounter == 1){
-        listCounter = listCounter + 1;
-        Node* pivot = listaG;
-        int counterTrack = 0;
-
-        while(pivot != NULL){
-            while(pivot->data != NULL){
-                if(counterTrack >= 0 and counterTrack <= sizeofList){
-                    playlist->addMedia(QMediaContent(QUrl::fromLocalFile(QFileInfo(QString::fromStdString(pivot->data->info2)).absoluteFilePath())));
-                    ui->listWidget->addItem(QString::fromStdString(pivot->data->info2));
-                    pivot->data = pivot->data->next;
-                    counterTrack++;
-                }
-                else{
-                   pivot->data = pivot->data->next;
-                }
-            }
-            pivot = pivot->next;
+    if(listLoaded == true){
+        if(listCounter == 100){
+            qDebug()<<"Action not permited";
         }
+        else{
+            Node* lista1 = NULL;
+
+            globalCounter += 80;
+
+            playlist->removeMedia(0,sizeofList);
+
+            ui->listWidget->clear();
+
+            deleteNode(&listaG, 1);
+
+            listCounter = listCounter + 1;
+
+            generateList(&lista1, calculateSize("../fma_small/checksums"), globalCounter);
+
+            insertEnd(&listaG, &lista1);
+
+            while (listaG != NULL)
+                {
+                    while(listaG->data != NULL){
+                        playlist->addMedia(QMediaContent(QUrl::fromLocalFile(QFileInfo(QString::fromStdString(listaG->data->info2)).absoluteFilePath())));
+                        ui->listWidget->addItem(QString::fromStdString(listaG->data->info2));
+                        listaG->data = listaG->data->next;
+                    }
+                    listaG = listaG->next;
+                }
+            qDebug()<<"Success";
+        }
+
     }
     else{
-        listCounter = listCounter + 1;
-        qDebug()<<"Success";
+        qDebug() << "Please Load Library First";
     }
 }
 
