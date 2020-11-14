@@ -362,30 +362,41 @@ void Reproductor::on_duration(qint64 position)
 
 void Reproductor::on_pushButton_clicked()
 {
-    int counterTrack = 0;
+    if(ui->checkBox->isChecked()){
+        int counterTrack = 0;
 
 
-    setupList(&lista1, &lista2, &lista3, calculateSize("../fma_small/checksums"));
-    insertEnd(&listaG, &lista1);
-    insertEnd(&listaG, &lista2);
-    insertEnd(&listaG, &lista3);
+        setupList(&lista1, &lista2, &lista3, calculateSize("../fma_small/checksums"));
+        insertEnd(&listaG, &lista1);
+        insertEnd(&listaG, &lista2);
+        insertEnd(&listaG, &lista3);
 
-    Node* pivot = listaG;
+        Node* pivot = listaG;
 
 
-    while(pivot != NULL){
-        while(pivot->data != NULL){
-            if(counterTrack >= 0 and counterTrack <= sizeofList){
-                playlist->addMedia(QMediaContent(QUrl::fromLocalFile(QFileInfo(QString::fromStdString(pivot->data->info2)).absoluteFilePath())));
-                ui->listWidget->addItem(QString::fromStdString(pivot->data->info2));
-                pivot->data = pivot->data->next;
-                counterTrack++;
+        while(pivot != NULL){
+            while(pivot->data != NULL){
+                if(counterTrack >= 0 and counterTrack <= sizeofList){
+                    playlist->addMedia(QMediaContent(QUrl::fromLocalFile(QFileInfo(QString::fromStdString(pivot->data->info2)).absoluteFilePath())));
+                    ui->listWidget->addItem(QString::fromStdString(pivot->data->info2));
+                    pivot->data = pivot->data->next;
+                    counterTrack++;
+                }
+                else{
+                   pivot->data = pivot->data->next;
+                }
             }
-            else{
-               pivot->data = pivot->data->next;
-            }
+            pivot = pivot->next;
         }
-        pivot = pivot->next;
+
+    }
+    else{
+        insertAll(&listaG);
+        while(listaG != NULL){
+            playlist->addMedia(QMediaContent(QUrl::fromLocalFile(QFileInfo(QString::fromStdString(listaG->data->info2)).absoluteFilePath())));
+            ui->listWidget->addItem(QString::fromStdString(listaG->data->info2));
+            listaG = listaG->next;
+        }
     }
 
     float x = usage();
