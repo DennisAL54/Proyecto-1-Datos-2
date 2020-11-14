@@ -339,6 +339,9 @@ void Reproductor::on_pushButton_2_clicked()
     qDebug() << b;
     ui->mem->setText(b + " mb");
 
+    //ui->songName->setText()
+
+
 }
 
 void Reproductor::on_pushButton_3_clicked()
@@ -409,12 +412,15 @@ void Reproductor::on_listWidget_activated()
 {
     playlist->setCurrentIndex(ui->listWidget->currentRow());
     reproductor->play();
+    QString name = ui->listWidget->currentItem()->text();
+    QString fileName = QFileInfo(name).fileName();
+    ui->songName->setText(fileName);
 }
 
 void Reproductor::on_pushButton_4_clicked()
 {
     //playlist->removeMedia(0);
-    playlist->removeMedia(0,3);
+    playlist->removeMedia(0,30);
     int i = 0;
     while(i<10){
         i++;
