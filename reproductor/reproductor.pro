@@ -10,10 +10,12 @@ CONFIG += c++11
 SOURCES += \
     main.cpp \
     memoria.cpp \
+    metadata.cpp \
     reproductor.cpp
 
 HEADERS += \
     memoria.h \
+    metadata.h \
     reproductor.h
 
 FORMS += \

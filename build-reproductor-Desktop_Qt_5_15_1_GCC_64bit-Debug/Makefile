@@ -54,9 +54,11 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../reproductor/main.cpp \
 		../reproductor/memoria.cpp \
+		../reproductor/metadata.cpp \
 		../reproductor/reproductor.cpp moc_reproductor.cpp
 OBJECTS       = main.o \
 		memoria.o \
+		metadata.o \
 		reproductor.o \
 		moc_reproductor.o
 DIST          = ../../Qt/5.15.1/gcc_64/mkspecs/features/spec_pre.prf \
@@ -237,8 +239,10 @@ DIST          = ../../Qt/5.15.1/gcc_64/mkspecs/features/spec_pre.prf \
 		../../Qt/5.15.1/gcc_64/mkspecs/features/yacc.prf \
 		../../Qt/5.15.1/gcc_64/mkspecs/features/lex.prf \
 		../reproductor/reproductor.pro ../reproductor/memoria.h \
+		../reproductor/metadata.h \
 		../reproductor/reproductor.h ../reproductor/main.cpp \
 		../reproductor/memoria.cpp \
+		../reproductor/metadata.cpp \
 		../reproductor/reproductor.cpp
 QMAKE_TARGET  = reproductor
 DESTDIR       = 
@@ -623,8 +627,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../Qt/5.15.1/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../reproductor/memoria.h ../reproductor/reproductor.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../reproductor/main.cpp ../reproductor/memoria.cpp ../reproductor/reproductor.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../reproductor/memoria.h ../reproductor/metadata.h ../reproductor/reproductor.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../reproductor/main.cpp ../reproductor/memoria.cpp ../reproductor/metadata.cpp ../reproductor/reproductor.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../reproductor/reproductor.ui $(DISTDIR)/
 	$(COPY_FILE) --parents reproductor_en_US.ts $(DISTDIR)/
 
@@ -994,6 +998,9 @@ main.o: ../reproductor/main.cpp ../reproductor/reproductor.h \
 memoria.o: ../reproductor/memoria.cpp ../reproductor/memoria.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o memoria.o ../reproductor/memoria.cpp
 
+metadata.o: ../reproductor/metadata.cpp ../reproductor/metadata.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o metadata.o ../reproductor/metadata.cpp
+
 reproductor.o: ../reproductor/reproductor.cpp ../reproductor/reproductor.h \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/QMainWindow \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/qmainwindow.h \
@@ -1167,8 +1174,6 @@ reproductor.o: ../reproductor/reproductor.cpp ../reproductor/reproductor.h \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/qmenu.h \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/qaction.h \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../Qt/5.15.1/gcc_64/include/QtWidgets/QProgressBar \
-		../../Qt/5.15.1/gcc_64/include/QtWidgets/qprogressbar.h \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/QPushButton \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/qpushbutton.h \
 		../../Qt/5.15.1/gcc_64/include/QtWidgets/QSlider \
